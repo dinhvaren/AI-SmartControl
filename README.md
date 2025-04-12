@@ -13,8 +13,9 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh th
 ## Thông Tin Phiên Bản
 
 - Phiên bản hiện tại: 1.0.0
-- Ngày phát hành: 12/04/2025
-- Tác giả: [https://www.facebook.com/dvr.official.2203] Đình Wage
+- Ngày phát hành: 12/04/2024
+- Tác giả: Đình Wage
+- Facebook: [https://www.facebook.com/dvr.official.2203](https://www.facebook.com/dvr.official.2203)
 
 ## Tính Năng Chính
 
