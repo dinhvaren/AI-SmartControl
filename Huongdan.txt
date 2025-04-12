@@ -1,0 +1,107 @@
+HƯỚNG DẪN SỬ DỤNG HỆ THỐNG ĐIỀU KHIỂN BẰNG TAY VÀ GIỌNG NÓI
+
+===========================================
+
+1. GIỚI THIỆU
+-------------
+Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng cho phép người dùng điều khiển máy tính thông qua giọng nói và cử chỉ tay. Hệ thống hỗ trợ nhiều chức năng khác nhau từ điều khiển âm lượng, cuộn trang, đến điều khiển chuột và cửa sổ.
+
+2. YÊU CẦU HỆ THỐNG
+------------------
+- Webcam (độ phân giải tối thiểu 720p)
+- Microphone (chất lượng tốt, có khả năng lọc tiếng ồn)
+- Python 3.8 trở lên
+- Các thư viện được liệt kê trong requirements.txt
+
+3. CÀI ĐẶT
+----------
+1. Cài đặt Python 3.8 trở lên
+2. Cài đặt các thư viện cần thiết:
+   pip install -r requirements.txt
+3. Chạy chương trình:
+   python main.py
+
+4. HƯỚNG DẪN SỬ DỤNG
+-------------------
+
+4.1. Điều Khiển Bằng Giọng Nói
+------------------------------
+Hệ thống hỗ trợ các lệnh giọng nói sau:
+
+4.1.1. Điều Khiển Âm Lượng
+- "tăng âm lượng" hoặc "tăng âm": Tăng âm lượng hệ thống
+- "giảm âm lượng" hoặc "giảm âm": Giảm âm lượng hệ thống
+
+4.1.2. Điều Khiển Cuộn Trang
+- "lướt xuống": Cuộn trang xuống
+- "lướt lên": Cuộn trang lên
+- "dừng lại": Dừng cuộn trang
+
+4.1.3. Điều Khiển Cửa Sổ
+- "mở trang" hoặc "chuyển trang" hoặc "cửa sổ": Mở chế độ Alt+Tab
+- "qua phải": Chuyển sang tab bên phải (khi đang trong chế độ Alt+Tab)
+- "qua trái": Chuyển sang tab bên trái (khi đang trong chế độ Alt+Tab)
+- "chọn trang": Chọn tab hiện tại (khi đang trong chế độ Alt+Tab)
+- "đóng cửa sổ": Đóng cửa sổ hiện tại
+
+4.1.4. Điều Khiển Chuột
+- "nhấp đôi" hoặc "double click": Nhấp đôi chuột
+- "nhấp chuột" hoặc "click chuột": Nhấp chuột một lần
+- "chuột phải" hoặc "right click": Nhấp chuột phải
+- "chuột trái" hoặc "left click": Nhấp chuột trái
+- "chuột qua phải": Di chuột sang phải 100 pixel
+- "chuột qua trái": Di chuột sang trái 100 pixel
+- "chuột lên": Di chuột lên trên 100 pixel
+- "chuột xuống": Di chuột xuống dưới 100 pixel
+
+4.1.5. Nhập Văn Bản
+- "nhập chữ": Chuyển lời nói thành văn bản và nhập vào vị trí con trỏ
+- "dừng nhập": Kết thúc quá trình nhập văn bản
+- "xóa chữ": Xóa một ký tự ở vị trí con trỏ
+
+4.1.6. Hệ Thống
+- "tắt máy": Tắt máy tính
+
+4.2. Điều Khiển Bằng Cử Chỉ Tay
+-------------------------------
+Các cử chỉ tay được hỗ trợ:
+
+4.2.1. Cử Chỉ Cơ Bản
+- Giơ ngón tay cái lên: Tăng âm lượng
+- Giơ ngón tay cái xuống: Giảm âm lượng
+- Vẫy tay sang trái/phải: Cuộn trang web
+- Giơ 2 ngón tay: Mở tab mới
+- Giơ 5 ngón tay: Tắt máy tính
+
+5. LƯU Ý KHI SỬ DỤNG
+-------------------
+1. Đảm bảo microphone và webcam hoạt động bình thường
+2. Sử dụng trong môi trường có ánh sáng đầy đủ
+3. Tránh tiếng ồn xung quanh khi sử dụng tính năng nhận diện giọng nói
+4. Giữ khoảng cách phù hợp với webcam (khoảng 50-100cm)
+5. Đảm bảo đã cấp quyền truy cập microphone và camera cho ứng dụng
+
+6. XỬ LÝ SỰ CỐ
+-------------
+1. Nếu hệ thống không nhận diện được giọng nói:
+   - Kiểm tra microphone
+   - Giảm tiếng ồn xung quanh
+   - Nói rõ ràng và đủ to
+
+2. Nếu hệ thống không nhận diện được cử chỉ tay:
+   - Kiểm tra webcam
+   - Điều chỉnh ánh sáng
+   - Đảm bảo tay nằm trong khung hình
+
+3. Nếu gặp lỗi khác:
+   - Khởi động lại ứng dụng
+   - Kiểm tra kết nối thiết bị
+   - Cập nhật driver thiết bị
+
+7. LIÊN HỆ HỖ TRỢ
+----------------
+Email: hqhuyzzzz@gmail.com
+GitHub: https://github.com/dinhvaren
+Website: https://dinhvaren.github.io
+
+
