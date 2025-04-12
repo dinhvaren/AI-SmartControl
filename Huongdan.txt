@@ -69,9 +69,18 @@ Các cử chỉ tay được hỗ trợ:
 4.2.1. Cử Chỉ Cơ Bản
 - Giơ ngón tay cái lên: Tăng âm lượng
 - Giơ ngón tay cái xuống: Giảm âm lượng
-- Vẫy tay sang trái/phải: Cuộn trang web
+- Vẫy tay sang trái: Chuyển sang tab bên trái
+- Vẫy tay sang phải: Cuộn sang tab bên phải
 - Giơ 2 ngón tay: Mở tab mới
+- Giơ 3 ngón tay: Đóng tab hiện tại
+- Giơ 4 ngón tay: Mở menu Start
 - Giơ 5 ngón tay: Tắt máy tính
+
+4.2.2. Cử Chỉ Nâng Cao
+- Nắm tay: Tạm dừng nhận diện cử chỉ
+- Mở bàn tay: Tiếp tục nhận diện cử chỉ
+- Xoay tay theo chiều kim đồng hồ: Tăng độ nhạy
+- Xoay tay ngược chiều kim đồng hồ: Giảm độ nhạy
 
 5. LƯU Ý KHI SỬ DỤNG
 -------------------
@@ -80,6 +89,8 @@ Các cử chỉ tay được hỗ trợ:
 3. Tránh tiếng ồn xung quanh khi sử dụng tính năng nhận diện giọng nói
 4. Giữ khoảng cách phù hợp với webcam (khoảng 50-100cm)
 5. Đảm bảo đã cấp quyền truy cập microphone và camera cho ứng dụng
+6. Khi thực hiện cử chỉ tay, giữ tay ổn định trong 1-2 giây để hệ thống nhận diện
+7. Tránh thực hiện các cử chỉ quá nhanh hoặc không rõ ràng
 
 6. XỬ LÝ SỰ CỐ
 -------------
@@ -92,6 +103,8 @@ Các cử chỉ tay được hỗ trợ:
    - Kiểm tra webcam
    - Điều chỉnh ánh sáng
    - Đảm bảo tay nằm trong khung hình
+   - Thực hiện cử chỉ chậm và rõ ràng hơn
+   - Kiểm tra khoảng cách với webcam
 
 3. Nếu gặp lỗi khác:
    - Khởi động lại ứng dụng
