@@ -91,8 +91,23 @@ class VoiceAI:
             while pygame.mixer.music.get_busy():
                 pygame.time.Clock().tick(10)
             
+            # Dừng phát nhạc và giải phóng tài nguyên
+            pygame.mixer.music.stop()
+            pygame.mixer.music.unload()
+            
+            # Đợi một chút để đảm bảo file được giải phóng
+            time.sleep(0.5)
+            
             # Xóa file tạm sau khi phát xong
-            os.remove(temp_file)
+            try:
+                os.remove(temp_file)
+            except PermissionError:
+                # Nếu không thể xóa ngay lập tức, thử lại sau 1 giây
+                time.sleep(1)
+                try:
+                    os.remove(temp_file)
+                except PermissionError:
+                    print("Không thể xóa file tạm, sẽ được xóa trong lần chạy tiếp theo")
             
         except Exception as e:
             print(f"Lỗi khi phát âm thanh: {e}")
