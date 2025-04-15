@@ -35,6 +35,7 @@ class VoiceAI:
         self.auto_scroll = AutoScroll(screen_height=pyautogui.size()[1])
         self.shutdown = Shutdown()
         self.tab_window = TabWindow()
+        self.mouse_dragging = False  # Biến theo dõi trạng thái kéo chuột
         
         # Cấu hình recognizer
         self.recognizer.energy_threshold = 4000  # Ngưỡng năng lượng âm thanh
@@ -142,23 +143,45 @@ class VoiceAI:
                 return True
             elif "chuột qua phải" in command:
                 current_x, current_y = pyautogui.position()
-                pyautogui.moveTo(current_x + 25, current_y, duration=0.5)
+                if self.mouse_dragging:
+                    pyautogui.dragTo(current_x + 25, current_y, duration=0.5)
+                else:
+                    pyautogui.moveTo(current_x + 25, current_y, duration=0.5)
                 # self.speak("Đã di chuột qua phải.")
                 return True
             elif "chuột qua trái" in command:
                 current_x, current_y = pyautogui.position()
-                pyautogui.moveTo(current_x - 25, current_y, duration=0.5)
+                if self.mouse_dragging:
+                    pyautogui.dragTo(current_x - 25, current_y, duration=0.5)
+                else:
+                    pyautogui.moveTo(current_x - 25, current_y, duration=0.5)
                 # self.speak("Đã di chuột qua trái.")
                 return True
             elif "chuột lên" in command:
                 current_x, current_y = pyautogui.position()
-                pyautogui.moveTo(current_x, current_y - 25, duration=0.5)
+                if self.mouse_dragging:
+                    pyautogui.dragTo(current_x, current_y - 25, duration=0.5)
+                else:
+                    pyautogui.moveTo(current_x, current_y - 25, duration=0.5)
                 # self.speak("Đã di chuột lên.")
                 return True
             elif "chuột xuống" in command:
                 current_x, current_y = pyautogui.position()
-                pyautogui.moveTo(current_x, current_y + 25, duration=0.5)
+                if self.mouse_dragging:
+                    pyautogui.dragTo(current_x, current_y + 25, duration=0.5)
+                else:
+                    pyautogui.moveTo(current_x, current_y + 25, duration=0.5)
                 # self.speak("Đã di chuột xuống.")
+                return True
+            elif "kéo chuột" in command:
+                pyautogui.mouseDown()
+                self.mouse_dragging = True
+                # self.speak("Đã kéo chuột.")
+                return True
+            elif "thả chuột" in command:
+                pyautogui.mouseUp()
+                self.mouse_dragging = False
+                # self.speak("Đã thả chuột.")
                 return True
             elif "nhập chữ" in command:
                 print("=== Bắt đầu chế độ nhập văn bản ===")
@@ -273,6 +296,10 @@ class VoiceAI:
             elif "dán chữ" in command or "paste" in command:
                 pyautogui.hotkey('ctrl', 'v')
                 print("Đã dán.")  # Thêm log để kiểm tra
+                return True
+            elif "xuống dòng" in command:
+                pyautogui.press('enter')
+                print("Đã xuống dòng.")  # Thêm log để kiểm tra
                 return True
             return False
         except Exception as e:
@@ -428,6 +455,14 @@ class VoiceAI:
                     time.sleep(0.5)  # Đợi kết quả tìm kiếm
                     pyautogui.press('enter')
                     print(f"Đang mở {app_name}...")  # Thêm log để kiểm tra
+                return True
+            elif "khởi động lại" in command:
+                print("Đang khởi động lại máy tính...")
+                os.system("shutdown /r /t 1")  # Khởi động lại sau 1 giây
+                return True
+            elif "chế độ ngủ" in command:
+                print("Đang đưa máy vào chế độ ngủ...")
+                os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")  # Đưa máy vào chế độ ngủ
                 return True
             return False
         except Exception as e:

@@ -4,117 +4,152 @@ HƯỚNG DẪN SỬ DỤNG HỆ THỐNG ĐIỀU KHIỂN BẰNG TAY VÀ GIỌNG N
 
 1. GIỚI THIỆU
 -------------
-Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng cho phép người dùng điều khiển máy tính thông qua giọng nói và cử chỉ tay. Hệ thống hỗ trợ nhiều chức năng khác nhau từ điều khiển âm lượng, cuộn trang, đến điều khiển chuột và cửa sổ.
+Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng thông minh cho phép người dùng điều khiển máy tính thông qua giọng nói và cử chỉ tay. Hệ thống tích hợp công nghệ AI để nhận diện giọng nói và cử chỉ, mang lại trải nghiệm điều khiển máy tính mới mẻ và tiện lợi.
 
 2. YÊU CẦU HỆ THỐNG
 ------------------
+2.1. Phần Cứng
 - Webcam (độ phân giải tối thiểu 720p)
 - Microphone (chất lượng tốt, có khả năng lọc tiếng ồn)
+- CPU: Intel Core i3 trở lên hoặc tương đương
+- RAM: Tối thiểu 4GB
+- GPU: Không bắt buộc, nhưng có thể cải thiện hiệu suất
+
+2.2. Phần Mềm
 - Python 3.8 trở lên
 - Các thư viện được liệt kê trong requirements.txt
+- Hệ điều hành: Windows 10/11, Linux, macOS
 
 3. CÀI ĐẶT
 ----------
-1. Cài đặt Python 3.8 trở lên
-2. Cài đặt các thư viện cần thiết:
-   pip install -r requirements.txt
-3. Chạy chương trình:
-   python main.py
+3.1. Cài đặt Python
+- Tải và cài đặt Python 3.8 trở lên từ trang chủ Python
+- Đảm bảo đã thêm Python vào PATH hệ thống
+
+3.2. Cài đặt Thư Viện
+- Mở Command Prompt hoặc Terminal
+- Di chuyển đến thư mục dự án
+- Chạy lệnh: pip install -r requirements.txt
+
+3.3. Khởi Chạy Ứng Dụng
+- Mở Command Prompt hoặc Terminal
+- Di chuyển đến thư mục dự án
+- Chạy lệnh: python main.py
 
 4. HƯỚNG DẪN SỬ DỤNG
 -------------------
 
 4.1. Điều Khiển Bằng Giọng Nói
 ------------------------------
-Hệ thống hỗ trợ các lệnh giọng nói sau:
-
 4.1.1. Điều Khiển Âm Lượng
 - "tăng âm lượng" hoặc "tăng âm": Tăng âm lượng hệ thống
 - "giảm âm lượng" hoặc "giảm âm": Giảm âm lượng hệ thống
+- "tăng âm 10": Tăng âm lượng 10 đơn vị
+- "giảm âm 10": Giảm âm lượng 10 đơn vị
 
 4.1.2. Điều Khiển Cuộn Trang
 - "lướt xuống": Cuộn trang xuống
 - "lướt lên": Cuộn trang lên
 - "dừng lại": Dừng cuộn trang
+- "cuộn nhanh": Tăng tốc độ cuộn
+- "cuộn chậm": Giảm tốc độ cuộn
 
 4.1.3. Điều Khiển Cửa Sổ
-- "mở trang" hoặc "chuyển trang" hoặc "cửa sổ": Mở chế độ Alt+Tab
-- "qua phải": Chuyển sang tab bên phải (khi đang trong chế độ Alt+Tab)
-- "qua trái": Chuyển sang tab bên trái (khi đang trong chế độ Alt+Tab)
-- "chọn trang": Chọn tab hiện tại (khi đang trong chế độ Alt+Tab)
+- "mở trang": Mở tab mới
+- "chuyển trang": Chuyển tab
+- "cửa sổ": Mở chế độ chuyển cửa sổ
+- "qua phải": Chuyển sang tab/cửa sổ bên phải
+- "qua trái": Chuyển sang tab/cửa sổ bên trái
+- "chọn trang": Chọn cửa sổ hiện tại
 - "đóng cửa sổ": Đóng cửa sổ hiện tại
+- "thu nhỏ": Thu nhỏ cửa sổ hiện tại
+- "phóng to": Phóng to cửa sổ hiện tại
 
 4.1.4. Điều Khiển Chuột
-- "nhấp đôi" hoặc "double click": Nhấp đôi chuột
-- "nhấp chuột" hoặc "click chuột": Nhấp chuột một lần
-- "chuột phải" hoặc "right click": Nhấp chuột phải
-- "chuột trái" hoặc "left click": Nhấp chuột trái
-- "chuột qua phải": Di chuột sang phải 100 pixel
-- "chuột qua trái": Di chuột sang trái 100 pixel
+- "nhấp đôi": Nhấp đôi chuột
+- "nhấp chuột": Nhấp chuột trái
+- "chuột phải": Nhấp chuột phải
 - "chuột lên": Di chuột lên trên 100 pixel
 - "chuột xuống": Di chuột xuống dưới 100 pixel
+- "chuột qua trái": Di chuột sang trái 100 pixel
+- "chuột qua phải": Di chuột sang phải 100 pixel
+- "kéo chuột": Bắt đầu kéo chuột
+- "thả chuột": Kết thúc kéo chuột
 
 4.1.5. Nhập Văn Bản
-- "nhập chữ": Chuyển lời nói thành văn bản và nhập vào vị trí con trỏ
-- "dừng nhập": Kết thúc quá trình nhập văn bản
-- "xóa chữ": Xóa một ký tự ở vị trí con trỏ
+- "nhập chữ": Bắt đầu nhập văn bản
+- "dừng nhập": Kết thúc nhập văn bản
+- "xóa chữ": Xóa một ký tự
+- "xóa 3 chữ": Xóa 3 ký tự (có thể thay đổi số)
+- "xóa từ": Xóa một từ
+- "xuống dòng": Xuống dòng mới
+- "tab": Thêm khoảng trắng tab
 
 4.1.6. Hệ Thống
 - "tắt máy": Tắt máy tính
+- "khởi động lại": Khởi động lại máy tính
+- "chế độ ngủ": Đưa máy vào chế độ ngủ
+- "chế độ thoát": Thoát ứng dụng // chưa thêm lệnh vì chưa có giao diện cụ thể của ứng dụng
 
 4.2. Điều Khiển Bằng Cử Chỉ Tay
 -------------------------------
-Các cử chỉ tay được hỗ trợ:
-
 4.2.1. Cử Chỉ Cơ Bản
-- Giơ ngón tay cái lên: Tăng âm lượng
-- Giơ ngón tay cái xuống: Giảm âm lượng
-- Vẫy tay sang trái: Chuyển sang tab bên trái
-- Vẫy tay sang phải: Cuộn sang tab bên phải
-- Giơ 2 ngón tay: Mở tab mới
-- Giơ 3 ngón tay: Đóng tab hiện tại
-- Giơ 4 ngón tay: Mở menu Start
-- Giơ 5 ngón tay: Tắt máy tính
+- Giơ ngón cái và ngón trỏ: Điều khiển âm lượng
+- Giơ ngón trỏ và ngón giữa: Cuộn trang
+- Giơ 4 ngón tay: Điều khiển tab
+- Giơ ngón út: Tắt máy
 
 4.2.2. Cử Chỉ Nâng Cao
-- Nắm tay: Tạm dừng nhận diện cử chỉ
-- Mở bàn tay: Tiếp tục nhận diện cử chỉ
+- Nắm tay: Tạm dừng nhận diện
+- Mở bàn tay: Tiếp tục nhận diện
 - Xoay tay theo chiều kim đồng hồ: Tăng độ nhạy
 - Xoay tay ngược chiều kim đồng hồ: Giảm độ nhạy
 
 5. LƯU Ý KHI SỬ DỤNG
 -------------------
-1. Đảm bảo microphone và webcam hoạt động bình thường
-2. Sử dụng trong môi trường có ánh sáng đầy đủ
-3. Tránh tiếng ồn xung quanh khi sử dụng tính năng nhận diện giọng nói
-4. Giữ khoảng cách phù hợp với webcam (khoảng 50-100cm)
-5. Đảm bảo đã cấp quyền truy cập microphone và camera cho ứng dụng
-6. Khi thực hiện cử chỉ tay, giữ tay ổn định trong 1-2 giây để hệ thống nhận diện
-7. Tránh thực hiện các cử chỉ quá nhanh hoặc không rõ ràng
+5.1. Môi Trường Sử Dụng
+- Đảm bảo ánh sáng đầy đủ
+- Tránh ánh sáng quá mạnh hoặc ngược sáng
+- Giữ khoảng cách 50-100cm với webcam
+- Tránh tiếng ồn xung quanh
+
+5.2. Cấu Hình Thiết Bị
+- Kiểm tra và cấp quyền truy cập microphone
+- Kiểm tra và cấp quyền truy cập camera
+- Đảm bảo driver thiết bị được cập nhật
+- Kiểm tra chất lượng âm thanh và hình ảnh
+
+5.3. Thao Tác
+- Nói rõ ràng và đủ to
+- Giữ tay ổn định khi thực hiện cử chỉ
+- Tránh thực hiện cử chỉ quá nhanh
+- Đợi phản hồi của hệ thống trước khi thực hiện lệnh tiếp theo
 
 6. XỬ LÝ SỰ CỐ
 -------------
-1. Nếu hệ thống không nhận diện được giọng nói:
-   - Kiểm tra microphone
-   - Giảm tiếng ồn xung quanh
-   - Nói rõ ràng và đủ to
+6.1. Vấn Đề Với Giọng Nói
+- Kiểm tra microphone
+- Giảm tiếng ồn xung quanh
+- Nói rõ ràng và đủ to
+- Kiểm tra cài đặt âm thanh hệ thống
 
-2. Nếu hệ thống không nhận diện được cử chỉ tay:
-   - Kiểm tra webcam
-   - Điều chỉnh ánh sáng
-   - Đảm bảo tay nằm trong khung hình
-   - Thực hiện cử chỉ chậm và rõ ràng hơn
-   - Kiểm tra khoảng cách với webcam
+6.2. Vấn Đề Với Cử Chỉ Tay
+- Kiểm tra ánh sáng
+- Điều chỉnh vị trí camera
+- Đảm bảo tay nằm trong khung hình
+- Làm sạch ống kính camera
 
-3. Nếu gặp lỗi khác:
-   - Khởi động lại ứng dụng
-   - Kiểm tra kết nối thiết bị
-   - Cập nhật driver thiết bị
+6.3. Vấn Đề Hệ Thống
+- Kiểm tra kết nối thiết bị
+- Khởi động lại ứng dụng
+- Cập nhật driver thiết bị
+- Kiểm tra tài nguyên hệ thống
 
 7. LIÊN HỆ HỖ TRỢ
 ----------------
-Email: hqhuyzzzz@gmail.com
-GitHub: https://github.com/dinhvaren
-Website: https://dinhvaren.github.io
+- Email: hqhuyzzzz@gmail.com
+- GitHub: https://github.com/dinhvaren
+- Website: https://dinhvaren.github.io
+- Facebook: https://www.facebook.com/dvr.official.2203
 
 
