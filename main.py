@@ -103,7 +103,7 @@ while True:
     try:
         while not command_queue.empty():
             command = command_queue.get_nowait()
-            voice_ai.execute_command(command)
+            voice_ai.process_command(command)
     except queue.Empty:
         pass
     
