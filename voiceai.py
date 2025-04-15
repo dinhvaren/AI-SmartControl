@@ -295,10 +295,10 @@ class VoiceAI:
                     count = int(numbers[0])
                     for _ in range(count):
                         pyautogui.hotkey('ctrl', 'backspace')
-                    # self.speak(f"Đã xóa {count} từ.")
+                    self.speak(f"Đã xóa {count} từ.")
                 else:
                     pyautogui.hotkey('ctrl', 'backspace')
-                    # self.speak("Đã xóa một từ.")
+                    self.speak("Đã xóa một từ.")
                 return True
             elif "bôi đen" in command:
                 # Trích xuất số lượng từ cần bôi đen từ lệnh
@@ -308,27 +308,29 @@ class VoiceAI:
                     for _ in range(count):
                         pyautogui.hotkey('shift', 'right')
                         time.sleep(0.1)  # Thêm độ trễ giữa các lần bôi đen
-                    print(f"Đã bôi đen {count} từ.")  # Thêm log để kiểm tra
+                    print(f"Đã bôi đen {count} từ.")
+                    self.speak(f"Đã bôi đen {count} từ.")
                 else:
                     pyautogui.hotkey('shift', 'right')
-                    print("Đã bôi đen một từ.")  # Thêm log để kiểm tra
+                    print("Đã bôi đen một từ.")
+                    self.speak("Đã bôi đen một từ.")
                 return True
             elif "copy" in command or "sao chép" in command:
                 pyautogui.hotkey('ctrl', 'c')
-                print("Đã sao chép.")  # Thêm log để kiểm tra
+                self.speak("Đã sao chép.")
                 return True
             elif "dán chữ" in command or "paste" in command:
                 pyautogui.hotkey('ctrl', 'v')
-                print("Đã dán.")  # Thêm log để kiểm tra
+                self.speak("Đã dán.")
                 return True
             elif "xuống dòng" in command:
                 pyautogui.press('enter')
-                print("Đã xuống dòng.")  # Thêm log để kiểm tra
+                self.speak("Đã xuống dòng.")
                 return True
             return False
         except Exception as e:
             print(f"Lỗi khi xử lý lệnh chuột: {e}")
-            # self.speak("Không thể thực hiện lệnh chuột.")
+            self.speak("Không thể thực hiện lệnh chuột.")
             return False
 
     def _handle_text_commands(self, command):
@@ -424,10 +426,10 @@ class VoiceAI:
                     count = int(numbers[0])
                     for _ in range(count):
                         pyautogui.hotkey('ctrl', 'backspace')
-                    # self.speak(f"Đã xóa {count} từ.")
+                    self.speak(f"Đã xóa {count} từ.")
                 else:
                     pyautogui.hotkey('ctrl', 'backspace')
-                    # self.speak("Đã xóa một từ.")
+                    self.speak("Đã xóa một từ.")
                 return True
             elif "bôi đen" in command:
                 # Trích xuất số lượng từ cần bôi đen từ lệnh
@@ -437,18 +439,20 @@ class VoiceAI:
                     for _ in range(count):
                         pyautogui.hotkey('shift', 'right')
                         time.sleep(0.1)  # Thêm độ trễ giữa các lần bôi đen
-                    print(f"Đã bôi đen {count} từ.")  # Thêm log để kiểm tra
+                    print(f"Đã bôi đen {count} từ.")
+                    self.speak(f"Đã bôi đen {count} từ.")
                 else:
                     pyautogui.hotkey('shift', 'right')
-                    print("Đã bôi đen một từ.")  # Thêm log để kiểm tra
+                    print("Đã bôi đen một từ.")
+                    self.speak("Đã bôi đen một từ.")
                 return True
             elif "copy" in command or "sao chép" in command:
                 pyautogui.hotkey('ctrl', 'c')
-                print("Đã sao chép.")  # Thêm log để kiểm tra
+                self.speak("Đã sao chép.")
                 return True
             elif "dán chữ" in command or "paste" in command:
                 pyautogui.hotkey('ctrl', 'v')
-                print("Đã dán.")  # Thêm log để kiểm tra
+                self.speak("Đã dán.")
                 return True
             return False
         except Exception as e:
@@ -520,49 +524,46 @@ class VoiceAI:
             self._handle_volume_command(command, is_increase=False)
         elif "lướt xuống" in command:
             self.auto_scroll.start_scroll()
-            # self.speak("Đang lướt xuống.")
+            self.speak("Đang lướt xuống.")
         elif "lướt lên" in command:
             self.auto_scroll.start_scroll_up()
-            # self.speak("Đang lướt lên.")
+            self.speak("Đang lướt lên.")
         elif "dừng lại" in command:
             self.auto_scroll.stop_scroll()
-            # self.speak("Đã dừng lướt.")
+            self.speak("Đã dừng lướt.")
         elif "tắt máy" in command:
             self.shutdown.shutdown_computer()
-            # self.speak("Máy tính sẽ tắt.")
+            self.speak("Máy tính sẽ tắt.")
         elif "mở trang" in command:
             self.tab_window.open_tab()
-            # self.speak("Đang mở trang.")
+            self.speak("Đang mở trang.")
         elif "chuyển trang" in command:
             self.tab_window.open_tab()  # Sử dụng cùng hàm với mở tab
-            # self.speak("Đang chuyển trang.")
+            self.speak("Đang chuyển trang.")
         elif "cửa sổ" in command:
             self.tab_window.open_tab()  # Sử dụng cùng hàm với mở tab
-            # self.speak("Đang mở chế độ chuyển cửa sổ.")
+            self.speak("Đang mở chế độ chuyển cửa sổ.")
         elif "qua phải" in command:
             if self.tab_window.alt_tab_active:
                 self.tab_window.switch_tab_right()
-                # self.speak("Chuyển qua phải.")
+                self.speak("Chuyển qua phải.")
             else:
-                # self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
-                pass
+                self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
         elif "qua trái" in command:
             if self.tab_window.alt_tab_active:
                 self.tab_window.switch_tab_left()
-                # self.speak("Chuyển qua trái.")
+                self.speak("Chuyển qua trái.")
             else:
-                # self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
-                pass
+                self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
         elif "chọn trang" in command:
             if self.tab_window.alt_tab_active:
                 self.tab_window.select_tab()
-                # self.speak("Đã chọn.")
+                self.speak("Đã chọn.")
             else:
-                # self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
-                pass
+                self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
         else:
             print("Lệnh không được nhận diện.")
-            # self.speak("Xin lỗi, lệnh không được nhận diện.")
+            self.speak("Xin lỗi, lệnh không được nhận diện.")
 
 def main():
     # Hàm chính để chạy ứng dụng VoiceAI.
