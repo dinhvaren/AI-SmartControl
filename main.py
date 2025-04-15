@@ -108,7 +108,7 @@ while True:
         pass
     
     # Hiển thị hình ảnh
-    cv2.imshow('Vision Control', frame)
+    cv2.imshow('camera', frame)
     
     # Thoát chương trình khi nhấn phím 'x'
     if cv2.waitKey(1) == ord('x'):
