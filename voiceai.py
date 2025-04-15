@@ -1,17 +1,18 @@
 """
 Module xử lý nhận diện và thực thi lệnh giọng nói
 Sử dụng thư viện speech_recognition để nhận diện giọng nói
-và pyttsx3 để chuyển văn bản thành giọng nói
+và gTTS để chuyển văn bản thành giọng nói
 """
 
 import cv2  # Xử lý hình ảnh
 import pyautogui  # Điều khiển chuột và bàn phím
 import speech_recognition as sr  # Nhận diện giọng nói
-import pyttsx3  # Chuyển văn bản thành giọng nói
+from gtts import gTTS  # Chuyển văn bản thành giọng nói
 import os  # Thao tác với hệ thống file
 import tempfile  # Tạo file tạm
 import re  # Xử lý biểu thức chính quy
 import time  # Thời gian
+import pygame  # Phát âm thanh
 
 import hand
 from hand_gesture import HandGesture
@@ -43,19 +44,11 @@ class VoiceAI:
         self.recognizer.pause_threshold = 0.8  # Thời gian chờ giữa các từ
         self.recognizer.phrase_threshold = 0.3  # Ngưỡng cho cụm từ
         
-        # Khởi tạo engine text-to-speech
-        self.engine = pyttsx3.init()
+        # Khởi tạo pygame mixer
+        pygame.mixer.init()
         
-        # Cấu hình giọng nói tiếng Việt
-        voices = self.engine.getProperty('voices')
-        for voice in voices:
-            if 'vietnamese' in voice.name.lower():
-                self.engine.setProperty('voice', voice.id)
-                break
-        
-        # Cấu hình tốc độ và âm lượng
-        self.engine.setProperty('rate', 150)  # Tốc độ nói
-        self.engine.setProperty('volume', 1.0)  # Âm lượng
+        # Tạo thư mục tạm để lưu file âm thanh
+        self.temp_dir = tempfile.mkdtemp()
 
     def listen(self):
         try:
@@ -82,11 +75,27 @@ class VoiceAI:
         return None
 
     def speak(self, text):
-        # Chuyển văn bản thành giọng nói và phát ra.
-        # Args:
-            # text (str): Văn bản cần chuyển thành giọng nói
-        self.engine.say(text)
-        self.engine.runAndWait()
+        try:
+            # Tạo file âm thanh tạm
+            temp_file = os.path.join(self.temp_dir, "temp.mp3")
+            
+            # Chuyển văn bản thành giọng nói
+            tts = gTTS(text=text, lang='vi', slow=False)
+            tts.save(temp_file)
+            
+            # Phát âm thanh trực tiếp bằng pygame
+            pygame.mixer.music.load(temp_file)
+            pygame.mixer.music.play()
+            
+            # Đợi cho đến khi phát xong
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
+            
+            # Xóa file tạm sau khi phát xong
+            os.remove(temp_file)
+            
+        except Exception as e:
+            print(f"Lỗi khi phát âm thanh: {e}")
 
     def _extract_number_from_command(self, command):
         # Trích xuất số từ lệnh giọng nói.
@@ -110,10 +119,10 @@ class VoiceAI:
         amount = self._extract_number_from_command(command)
         if is_increase:
             new_percent = self.volume.increase(amount)
-            # self.speak(f"Âm lượng đã được tăng lên {new_percent} phần trăm.")
+            self.speak(f"Âm lượng đã được tăng lên {new_percent} phần trăm.")
         else:
             new_percent = self.volume.decrease(amount)
-            # self.speak(f"Âm lượng đã được giảm xuống {new_percent} phần trăm.")
+            self.speak(f"Âm lượng đã được giảm xuống {new_percent} phần trăm.")
         
         # Đợi một chút để người dùng thấy thanh âm lượng thay đổi
         time.sleep(1)
@@ -127,19 +136,19 @@ class VoiceAI:
         try:
             if "nhấp đôi" in command or "double click" in command:
                 pyautogui.doubleClick()
-                # self.speak("Đã nhấp đôi.")
+                self.speak("Đã nhấp đôi.")
                 return True
             elif "nhấp chuột" in command or "click chuột" in command:
                 pyautogui.click()
-                # self.speak("Đã nhấp chuột.")
+                self.speak("Đã nhấp chuột.")
                 return True
             elif "chuột phải" in command or "right click" in command:
                 pyautogui.rightClick()
-                # self.speak("Đã nhấp chuột phải.")
+                self.speak("Đã nhấp chuột phải.")
                 return True
             elif "chuột trái" in command or "left click" in command:
                 pyautogui.leftClick()
-                # self.speak("Đã nhấp chuột trái.")
+                self.speak("Đã nhấp chuột trái.")
                 return True
             elif "chuột qua phải" in command:
                 current_x, current_y = pyautogui.position()
@@ -147,7 +156,7 @@ class VoiceAI:
                     pyautogui.dragTo(current_x + 25, current_y, duration=0.5)
                 else:
                     pyautogui.moveTo(current_x + 25, current_y, duration=0.5)
-                # self.speak("Đã di chuột qua phải.")
+                self.speak("Đã di chuột qua phải.")
                 return True
             elif "chuột qua trái" in command:
                 current_x, current_y = pyautogui.position()
@@ -155,7 +164,7 @@ class VoiceAI:
                     pyautogui.dragTo(current_x - 25, current_y, duration=0.5)
                 else:
                     pyautogui.moveTo(current_x - 25, current_y, duration=0.5)
-                # self.speak("Đã di chuột qua trái.")
+                self.speak("Đã di chuột qua trái.")
                 return True
             elif "chuột lên" in command:
                 current_x, current_y = pyautogui.position()
@@ -163,7 +172,7 @@ class VoiceAI:
                     pyautogui.dragTo(current_x, current_y - 25, duration=0.5)
                 else:
                     pyautogui.moveTo(current_x, current_y - 25, duration=0.5)
-                # self.speak("Đã di chuột lên.")
+                self.speak("Đã di chuột lên.")
                 return True
             elif "chuột xuống" in command:
                 current_x, current_y = pyautogui.position()
@@ -171,17 +180,17 @@ class VoiceAI:
                     pyautogui.dragTo(current_x, current_y + 25, duration=0.5)
                 else:
                     pyautogui.moveTo(current_x, current_y + 25, duration=0.5)
-                # self.speak("Đã di chuột xuống.")
+                self.speak("Đã di chuột xuống.")
                 return True
             elif "kéo chuột" in command:
                 pyautogui.mouseDown()
                 self.mouse_dragging = True
-                # self.speak("Đã kéo chuột.")
+                self.speak("Đã kéo chuột.")
                 return True
             elif "thả chuột" in command:
                 pyautogui.mouseUp()
                 self.mouse_dragging = False
-                # self.speak("Đã thả chuột.")
+                self.speak("Đã thả chuột.")
                 return True
             elif "nhập chữ" in command:
                 print("=== Bắt đầu chế độ nhập văn bản ===")
@@ -438,7 +447,7 @@ class VoiceAI:
         try:
             if "đóng cửa sổ" in command:
                 pyautogui.hotkey('alt', 'f4')
-                # self.speak("Đã đóng cửa sổ.")
+                self.speak("Đã đóng cửa sổ.")
                 return True
             elif "cài đặt" in command or "setting" in command:
                 pyautogui.hotkey('win', 'i')
@@ -458,10 +467,12 @@ class VoiceAI:
                 return True
             elif "khởi động lại" in command:
                 print("Đang khởi động lại máy tính...")
+                self.speak("Máy tính sẽ khởi động lại sau 1 giây.")
                 os.system("shutdown /r /t 1")  # Khởi động lại sau 1 giây
                 return True
             elif "chế độ ngủ" in command:
                 print("Đang đưa máy vào chế độ ngủ...")
+                self.speak("Máy tính sẽ chuyển sang chế độ ngủ.")
                 os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")  # Đưa máy vào chế độ ngủ
                 return True
             return False
