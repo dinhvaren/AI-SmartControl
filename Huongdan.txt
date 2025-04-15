@@ -69,10 +69,10 @@ Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng 
 - "nhấp đôi": Nhấp đôi chuột
 - "nhấp chuột": Nhấp chuột trái
 - "chuột phải": Nhấp chuột phải
-- "chuột lên": Di chuột lên trên 100 pixel
-- "chuột xuống": Di chuột xuống dưới 100 pixel
-- "chuột qua trái": Di chuột sang trái 100 pixel
-- "chuột qua phải": Di chuột sang phải 100 pixel
+- "chuột lên": Di chuột lên trên 25 pixel
+- "chuột xuống": Di chuột xuống dưới 25 pixel
+- "chuột qua trái": Di chuột sang trái 25 pixel
+- "chuột qua phải": Di chuột sang phải 25 pixel
 - "kéo chuột": Bắt đầu kéo chuột
 - "thả chuột": Kết thúc kéo chuột
 
@@ -84,12 +84,17 @@ Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng 
 - "xóa từ": Xóa một từ
 - "xuống dòng": Xuống dòng mới
 - "tab": Thêm khoảng trắng tab
+- "bôi đen [số]": Bôi đen số từ
+- "copy/sao chép": Sao chép văn bản
+- "dán chữ/paste": Dán văn bản
 
 4.1.6. Hệ Thống
 - "tắt máy": Tắt máy tính
 - "khởi động lại": Khởi động lại máy tính
 - "chế độ ngủ": Đưa máy vào chế độ ngủ
 - "chế độ thoát": Thoát ứng dụng // chưa thêm lệnh vì chưa có giao diện cụ thể của ứng dụng
+- "cài đặt/setting": Mở cài đặt Windows
+- "mở [tên ứng dụng]": Mở ứng dụng
 
 4.2. Điều Khiển Bằng Cử Chỉ Tay
 -------------------------------

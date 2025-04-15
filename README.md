@@ -84,6 +84,23 @@ Chi tiết hướng dẫn sử dụng có thể xem trong file `Huongdan.txt`
 - `requirements.txt`: Danh sách các thư viện cần thiết
 - `config.json`: Cấu hình hệ thống (nếu có)
 
+## Cấu Trúc Thư Mục
+```
+.
+├── main.py              # File chính chạy chương trình
+├── voiceai.py           # Module xử lý giọng nói
+├── hand_gesture.py      # Module nhận diện cử chỉ tay
+├── hand.py              # Module xử lý cử chỉ tay cơ bản
+├── hidden_window.py     # Module điều khiển cửa sổ ẩn
+├── scroll.py            # Module cuộn trang
+├── shutdown.py          # Module tắt máy
+├── tab_window.py        # Module quản lý tab
+├── volume.py            # Module điều khiển âm lượng
+├── requirements.txt     # Danh sách thư viện cần thiết
+├── README.md            # Tài liệu hướng dẫn
+└── Huongdan.txt         # Hướng dẫn sử dụng chi tiết
+```
+
 ## Đóng Góp
 
 Mọi đóng góp cho dự án đều được hoan nghênh. Vui lòng tạo pull request hoặc issue để thảo luận về các thay đổi.
