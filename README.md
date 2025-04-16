@@ -21,11 +21,13 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh đ
 
 ## 🎯 Mục Đích Dự Án
 
-- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi dành riêng cho người khuyết tật
-- Hỗ trợ người khuyết tật trong việc sử dụng máy tính một cách độc lập
-- Cải thiện khả năng tiếp cận công nghệ cho người khuyết tật
-- Tích hợp công nghệ AI trong việc nhận diện giọng nói và cử chỉ để tạo ra trải nghiệm điều khiển tự nhiên
+- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi dành riêng cho người khuyết tật, giúp họ có thể sử dụng máy tính một cách độc lập
+- Hỗ trợ người khuyết tật vận động trong việc sử dụng máy tính mà không cần phụ thuộc vào bàn phím và chuột truyền thống
+- Cải thiện khả năng tiếp cận công nghệ cho người khuyết tật, đặc biệt là những người gặp khó khăn trong việc sử dụng tay
+- Tích hợp công nghệ AI tiên tiến trong việc nhận diện giọng nói và cử chỉ để tạo ra trải nghiệm điều khiển tự nhiên và dễ sử dụng
 - Cung cấp giải pháp điều khiển đa phương thức, phù hợp với nhiều dạng khuyết tật khác nhau
+- Tạo ra một cộng đồng hỗ trợ và chia sẻ kinh nghiệm sử dụng công nghệ cho người khuyết tật
+- Phát triển một hệ thống mã nguồn mở, miễn phí để mọi người đều có thể tiếp cận và sử dụng
 
 ## 📦 Thông Tin Phiên Bản
 
