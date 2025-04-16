@@ -37,14 +37,21 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh đ
 
 | Tính Năng | Mô Tả | Trạng Thái |
 |-----------|-------|------------|
-| 🎤 Điều khiển bằng giọng nói | Nhận diện và xử lý lệnh thoại | ✅ Hoạt động |
-| ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera | ✅ Hoạt động |
-| 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống | ✅ Hoạt động |
-| 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ | ✅ Hoạt động |
-| 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu | ✅ Hoạt động |
-| ⏻ Tắt máy | Chức năng tắt máy tính | ✅ Hoạt động |
-| ⌨️ Nhập văn bản bằng giọng nói | Chuyển đổi giọng nói thành văn bản | ✅ Hoạt động |
-| 🖱️ Điều khiển chuột | Di chuyển và thao tác chuột | ✅ Hoạt động |
+| 🎤 Điều khiển bằng giọng nói | Nhận diện và xử lý lệnh thoại tiếng Việt | ✅ Hoạt động |
+| ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera với độ chính xác cao | ✅ Hoạt động |
+| 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống bằng giọng nói hoặc cử chỉ | ✅ Hoạt động |
+| 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ (thu nhỏ, phóng to, đóng) | ✅ Hoạt động |
+| 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu bằng cử chỉ tay | ✅ Hoạt động |
+| ⏻ Tắt máy | Chức năng tắt máy tính bằng giọng nói | ✅ Hoạt động |
+| ⌨️ Nhập văn bản bằng giọng nói | Chuyển đổi giọng nói thành văn bản tiếng Việt | ✅ Hoạt động |
+| 🖱️ Điều khiển chuột | Di chuyển và thao tác chuột bằng cử chỉ tay | ✅ Hoạt động |
+| 🎯 Chế độ điều khiển thông minh | Tự động chuyển đổi giữa các chế độ điều khiển | ✅ Hoạt động |
+| 🔍 Phóng to thu nhỏ | Điều khiển zoom bằng cử chỉ tay | ✅ Hoạt động |
+| 📱 Điều khiển đa màn hình | Hỗ trợ điều khiển trên nhiều màn hình | ✅ Hoạt động |
+| 🎨 Giao diện thân thiện | Thiết kế giao diện dễ sử dụng cho người khuyết tật | ✅ Hoạt động |
+| 🔄 Tùy chỉnh lệnh | Cho phép người dùng tùy chỉnh lệnh điều khiển | ✅ Hoạt động |
+| 📊 Báo cáo trạng thái | Hiển thị trạng thái hoạt động của hệ thống | ✅ Hoạt động |
+| 🔒 Bảo mật | Bảo vệ thông tin người dùng và dữ liệu nhạy cảm | ✅ Hoạt động |
 
 ## 🛠️ Yêu Cầu Hệ Thống
 
