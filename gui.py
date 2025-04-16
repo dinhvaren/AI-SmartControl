@@ -366,16 +366,18 @@ class ControlApp(tk.Tk):
         • Giơ ngón cái và ngón trỏ
         • Di chuyển lên/xuống để tăng/giảm âm lượng
         • Khoảng cách giữa 2 ngón tay thể hiện mức âm lượng
+        • Nắm tay lại để kết thúc điều khiển âm lượng
 
     2. Cuộn trang:
         • Giơ ngón trỏ và ngón giữa
         • Di chuyển lên/xuống để cuộn trang
         • Tốc độ cuộn phụ thuộc vào khoảng cách di chuyển
+        • Nắm tay lại để dừng cuộn trang
 
-    3. Điều khiển cửa sổ/tab:
+    3. Điều khiển tab/cửa sổ:
         • Giơ 4 ngón tay (trừ ngón cái) để mở Alt+Tab
         • Di chuyển trái/phải để chọn cửa sổ
-        • Nắm tay lại để chọn cửa sổ hiện tại
+        • Nắm tay lại để chọn cửa sổ hiện tại (đóng menu Alt+Tab)
         • Giơ 3 ngón để đóng cửa sổ hiện tại
         • Giơ 4 ngón để đóng tab hiện tại
 
@@ -383,33 +385,24 @@ class ControlApp(tk.Tk):
         • Giơ ngón út để kích hoạt
         • Giữ 3 giây để xác nhận tắt máy
 
-    ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
-    1. Mở ứng dụng:
-        • "Mở [tên ứng dụng]"
-        • "Khởi động [tên ứng dụng]"
+    5. Thu nhỏ cửa sổ:
+        • Gập tất cả các ngón tay xuống để thu nhỏ cửa sổ hiện tại
 
-    2. Tìm kiếm:
-        • "Tìm kiếm [nội dung]"
-        • "Search [nội dung]"
+    6. Điều khiển âm thanh:
+        • Giơ ngón cái và ngón trỏ
+        • Vuốt lên để tăng âm lượng
+        • Vuốt xuống để giảm âm lượng
+        • Nắm tay lại để kết thúc điều khiển
 
-    3. Điều khiển âm lượng:
-        • "Tăng âm lượng"
-        • "Giảm âm lượng"
-        • "Tắt tiếng"
-        • "Bật tiếng"
+    7. Chuyển đổi giữa các cửa sổ:
+        • Giơ tay phải
+        • Vuốt sang phải để chuyển sang cửa sổ tiếp theo
+        • Vuốt sang trái để chuyển về cửa sổ trước đó
 
-    4. Điều khiển hệ thống:
-        • "Tắt máy"
-        • "Khởi động lại"
-        • "Đăng xuất"
-        • "Ngủ đông"
-
-    5. Điều khiển cửa sổ:
-        • "Mở cửa sổ"
-        • "Chuyển cửa sổ"
-        • "Đóng cửa sổ"
-        • "Thu nhỏ cửa sổ"
-        • "Phóng to cửa sổ"
+    8. Điều khiển hai tay:
+        • Giơ cả hai tay để reset trạng thái điều khiển
+        • Giơ tay trái để điều khiển âm lượng
+        • Giơ tay phải để điều khiển cửa sổ
         """
         
         # Label chứa nội dung
@@ -572,6 +565,61 @@ class ControlApp(tk.Tk):
             # Lặp lại sau 10ms nếu chưa bắt đầu điều khiển
             if not self.running:
                 self.after(10, self.show_default_frame)
+        
+    def show_voice_commands(self):
+        """Hiển thị hướng dẫn các lệnh giọng nói"""
+        commands = """
+ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
+    1. Điều khiển chuột:
+        • "nhấp đôi" hoặc "double click" - Nhấp đúp chuột
+        • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
+        • "chuột phải" hoặc "right click" - Nhấp chuột phải
+        • "chuột trái" hoặc "left click" - Nhấp chuột trái
+        • "chuột qua phải" - Di chuột sang phải
+        • "chuột qua trái" - Di chuột sang trái
+        • "chuột lên" - Di chuột lên trên
+        • "chuột xuống" - Di chuột xuống dưới
+        • "kéo chuột" - Bắt đầu kéo chuột
+        • "thả chuột" - Thả chuột
+
+    2. Nhập văn bản:
+        • "nhập chữ" - Bắt đầu chế độ nhập văn bản
+        • "dừng nhập" - Kết thúc chế độ nhập văn bản
+        • "xóa chữ" - Xóa một ký tự hoặc số lượng ký tự được chỉ định
+        • "xóa từ" - Xóa một từ hoặc số lượng từ được chỉ định
+        • "bôi đen" - Bôi đen một từ hoặc số lượng từ được chỉ định
+        • "copy" hoặc "sao chép" - Sao chép văn bản
+        • "dán chữ" hoặc "paste" - Dán văn bản
+        • "xuống dòng" - Xuống dòng mới
+
+    3. Điều khiển ứng dụng:
+        • "đóng cửa sổ" - Đóng cửa sổ hiện tại
+        • "cài đặt" hoặc "setting" - Mở cài đặt Windows
+        • "mở [tên ứng dụng]" - Mở ứng dụng được chỉ định
+        • "khởi động lại" - Khởi động lại máy tính
+        • "chế độ ngủ" - Đưa máy vào chế độ ngủ
+
+    4. Điều khiển âm lượng:
+        • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
+        • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
+
+    5. Điều khiển cuộn trang:
+        • "lướt xuống" - Bắt đầu cuộn trang xuống
+        • "lướt lên" - Bắt đầu cuộn trang lên
+        • "dừng lại" - Dừng cuộn trang
+
+    6. Điều khiển tab/cửa sổ:
+        • "mở trang" - Mở tab mới
+        • "chuyển trang" - Chuyển đổi giữa các tab
+        • "cửa sổ" - Mở chế độ chuyển cửa sổ
+        • "qua phải" - Chuyển sang tab/cửa sổ bên phải
+        • "qua trái" - Chuyển sang tab/cửa sổ bên trái
+        • "chọn trang" - Chọn tab/cửa sổ hiện tại
+
+    7. Lệnh hệ thống:
+        • "tắt máy" - Tắt máy tính
+        """
+        messagebox.showinfo("Hướng dẫn lệnh giọng nói", commands)
         
     def __del__(self):
         if hasattr(self, 'cap'):
