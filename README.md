@@ -1,127 +1,147 @@
-# AI SmartControl - Hệ Thống Điều Khiển Đa Phương Thức Cho Máy Tính
+# 🤖 AI SmartControl - Hệ Thống Điều Khiển Thông Minh Thế Hệ Mới
 
-AI SmartControl là một hệ thống điều khiển máy tính thông minh thông qua giọng nói và cử chỉ tay, được phát triển bằng Python. Hệ thống được thiết kế để giúp người dùng điều khiển máy tính một cách tiện lợi và hiệu quả mà không cần sử dụng bàn phím và chuột truyền thống, đặc biệt hữu ích cho người khuyết tật và người dùng muốn trải nghiệm phương thức điều khiển mới.
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python Version"/>
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"/>
+  <img src="https://img.shields.io/badge/Status-Active-success.svg" alt="Status"/>
+</div>
 
-## Mục Đích Dự Án
+## 🚀 Giới Thiệu
 
-- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi
-- Hỗ trợ người khuyết tật trong việc sử dụng máy tính
-- Cải thiện trải nghiệm người dùng với các phương thức điều khiển mới
-- Tích hợp công nghệ AI trong việc nhận diện giọng nói và cử chỉ
-- Cung cấp giải pháp điều khiển đa phương thức cho máy tính
+AI SmartControl là một hệ thống điều khiển máy tính thông minh được thiết kế đặc biệt để hỗ trợ người khuyết tật, thông qua giọng nói và cử chỉ tay. Hệ thống được phát triển bằng Python với mục tiêu tạo ra một giải pháp điều khiển máy tính dễ tiếp cận và thân thiện với người dùng, giúp họ có thể sử dụng máy tính một cách độc lập mà không phụ thuộc vào bàn phím và chuột truyền thống.
 
-## Thông Tin Phiên Bản
+### ✨ Điểm Nổi Bật
 
-- Phiên bản hiện tại: 1.0.0
-- Ngày phát hành: 12/04/2024
-- Tác giả: Đình Wage
-- Facebook: [https://www.facebook.com/dvr.official.2203](https://www.facebook.com/dvr.official.2203)
+- 🎯 Điều khiển đa phương thức: Giọng nói và cử chỉ tay
+- 🎨 Giao diện thân thiện, dễ sử dụng
+- ⚡ Tốc độ xử lý nhanh chóng
+- 🔒 Bảo mật cao
+- 🎁 Hoàn toàn miễn phí và mã nguồn mở
+- ♿ Tối ưu hóa cho người khuyết tật
 
-## Tính Năng Chính
+## 🎯 Mục Đích Dự Án
 
-- **Điều khiển bằng giọng nói**: Sử dụng thư viện voiceai.py để nhận diện và xử lý lệnh thoại
-- **Điều khiển bằng cử chỉ tay**: Sử dụng camera để nhận diện cử chỉ tay (hand_gesture.py, hand.py)
-- **Điều khiển âm lượng**: Chức năng điều chỉnh âm lượng hệ thống (volume.py)
-- **Điều khiển cửa sổ**: Quản lý và điều khiển các cửa sổ ứng dụng (tab_window.py, hidden_window.py)
-- **Cuộn trang**: Điều khiển cuộn trang web hoặc tài liệu (scroll.py)
-- **Tắt máy**: Chức năng tắt máy tính (shutdown.py)
-- **Nhập văn bản bằng giọng nói**: Chuyển đổi giọng nói thành văn bản
-- **Điều khiển chuột**: Di chuyển và thao tác chuột thông qua giọng nói
+- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi dành riêng cho người khuyết tật
+- Hỗ trợ người khuyết tật trong việc sử dụng máy tính một cách độc lập
+- Cải thiện khả năng tiếp cận công nghệ cho người khuyết tật
+- Tích hợp công nghệ AI trong việc nhận diện giọng nói và cử chỉ để tạo ra trải nghiệm điều khiển tự nhiên
+- Cung cấp giải pháp điều khiển đa phương thức, phù hợp với nhiều dạng khuyết tật khác nhau
 
-## Yêu Cầu Hệ Thống
+## 📦 Thông Tin Phiên Bản
+
+| Phiên bản | Ngày phát hành | Trạng thái |
+|-----------|---------------|------------|
+| 1.0.0     | 12/04/2024    | ✅ Active  |
+
+## 💡 Tính Năng Chính
+
+| Tính Năng | Mô Tả | Trạng Thái |
+|-----------|-------|------------|
+| 🎤 Điều khiển bằng giọng nói | Nhận diện và xử lý lệnh thoại | ✅ Hoạt động |
+| ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera | ✅ Hoạt động |
+| 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống | ✅ Hoạt động |
+| 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ | ✅ Hoạt động |
+| 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu | ✅ Hoạt động |
+| ⏻ Tắt máy | Chức năng tắt máy tính | ✅ Hoạt động |
+| ⌨️ Nhập văn bản bằng giọng nói | Chuyển đổi giọng nói thành văn bản | ✅ Hoạt động |
+| 🖱️ Điều khiển chuột | Di chuyển và thao tác chuột | ✅ Hoạt động |
+
+## 🛠️ Yêu Cầu Hệ Thống
 
 ### Phần Cứng
-- Webcam (độ phân giải tối thiểu 720p)
-- Microphone (chất lượng tốt, có khả năng lọc tiếng ồn)
-- CPU: Intel Core i3 trở lên hoặc tương đương
-- RAM: Tối thiểu 4GB
-- GPU: Không bắt buộc, nhưng có thể cải thiện hiệu suất
+- 📷 Webcam (720p trở lên)
+- 🎤 Microphone chất lượng cao
+- 💻 CPU: Intel Core i3 trở lên
+- 🧠 RAM: 4GB trở lên
+- 🎮 GPU: Khuyến nghị (không bắt buộc)
 
 ### Phần Mềm
-- Python 3.8 trở lên
-- Các thư viện được liệt kê trong requirements.txt
-- Hệ điều hành: Windows 10/11, Linux, macOS
+- 🐍 Python 3.8+
+- 📚 Các thư viện trong requirements.txt
+- 💻 Windows 10/11, Linux, macOS
 
-## Cài Đặt
+## 🚀 Cài Đặt
 
-1. Clone repository này về máy local
-2. Cài đặt các thư viện cần thiết:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Chạy chương trình chính:
-   ```
-   python main.py
-   ```
+1. Clone repository:
+```bash
+git clone https://github.com/dinhvaren/AI-SmartControl.git
+cd AI-SmartControl
+```
 
-## Hướng Dẫn Sử Dụng
+2. Cài đặt thư viện:
+```bash
+pip install -r requirements.txt
+```
 
-Chi tiết hướng dẫn sử dụng có thể xem trong file `Huongdan.txt`
+3. Chạy chương trình:
+```bash
+python main.py
+```
 
-### Lưu Ý Quan Trọng
+## 📚 Cấu Trúc Dự Án
 
-1. Đảm bảo microphone và webcam hoạt động bình thường trước khi sử dụng
-2. Sử dụng trong môi trường có ánh sáng đầy đủ để nhận diện cử chỉ tay tốt hơn
-3. Tránh tiếng ồn xung quanh khi sử dụng tính năng nhận diện giọng nói
-4. Đảm bảo đã cấp quyền truy cập microphone và camera cho ứng dụng
-
-## Cấu Trúc Dự Án
-
-### Core Components
-- `main.py`: File chính chạy chương trình, quản lý luồng điều khiển
-- `voiceai.py`: Xử lý nhận diện giọng nói và chuyển đổi thành lệnh
-- `hand.py`: Xử lý nhận diện cử chỉ tay cơ bản
-- `hand_gesture.py`: Phân tích và xử lý các cử chỉ tay phức tạp
-
-### Control Modules
-- `volume.py`: Điều khiển âm lượng hệ thống
-- `tab_window.py`: Quản lý và điều khiển các cửa sổ ứng dụng
-- `scroll.py`: Điều khiển cuộn trang web và tài liệu
-- `shutdown.py`: Xử lý các lệnh tắt máy và khởi động lại
-- `hidden_window.py`: Quản lý cửa sổ ẩn và chế độ nền
-
-### Configuration
-- `requirements.txt`: Danh sách các thư viện cần thiết
-- `config.json`: Cấu hình hệ thống (nếu có)
-
-## Cấu Trúc Thư Mục
 ```
 .
-├── main.py              # File chính chạy chương trình
-├── voiceai.py           # Module xử lý giọng nói
-├── hand_gesture.py      # Module nhận diện cử chỉ tay
-├── hand.py              # Module xử lý cử chỉ tay cơ bản
-├── hidden_window.py     # Module điều khiển cửa sổ ẩn
-├── scroll.py            # Module cuộn trang
-├── shutdown.py          # Module tắt máy
-├── tab_window.py        # Module quản lý tab
-├── volume.py            # Module điều khiển âm lượng
-├── requirements.txt     # Danh sách thư viện cần thiết
-├── README.md            # Tài liệu hướng dẫn
-└── Huongdan.txt         # Hướng dẫn sử dụng chi tiết
+├── 📄 main.py                # File chính chạy chương trình
+├── 📄 gui.py                 # Giao diện người dùng
+├── 📄 hand.py                # Xử lý cử chỉ tay
+├── 📄 hand_gesture.py        # Controller cử chỉ tay
+├── 📄 voiceai.py             # Controller giọng nói
+├── 📄 volume.py              # Controller âm lượng
+├── 📄 tab_window.py          # Controller cửa sổ
+├── 📄 scroll.py              # Controller cuộn trang
+├── 📄 shutdown.py            # Controller tắt máy
+├── 📄 hidden_window.py       # Controller cửa sổ ẩn
+├── 📄 requirements.txt       # Danh sách thư viện cần thiết
+├── 📄 .env                   # File cấu hình môi trường
+├── 📄 .gitignore            # File cấu hình Git
+├── 📄 README.md             # Tài liệu hướng dẫn
+└── 📄 Huongdan.txt          # Hướng dẫn sử dụng chi tiết
 ```
 
-## Đóng Góp
+### Giải Thích Cấu Trúc
 
-Mọi đóng góp cho dự án đều được hoan nghênh. Vui lòng tạo pull request hoặc issue để thảo luận về các thay đổi.
+- **Các file chính**:
+  - `main.py`: File chính để chạy chương trình
+  - `gui.py`: Xử lý giao diện người dùng
+  - `hand.py`: Xử lý cử chỉ tay
 
-### Quy Tắc Đóng Góp
+- **Các controller**:
+  - `hand_gesture.py`: Điều khiển cử chỉ tay
+  - `voiceai.py`: Điều khiển giọng nói
+  - `volume.py`: Điều khiển âm lượng
+  - `tab_window.py`: Điều khiển cửa sổ
+  - `scroll.py`: Điều khiển cuộn trang
+  - `shutdown.py`: Điều khiển tắt máy
+  - `hidden_window.py`: Điều khiển cửa sổ ẩn
 
-1. Tuân thủ quy tắc viết code của dự án
-2. Thêm comment rõ ràng cho các thay đổi
-3. Kiểm tra kỹ trước khi tạo pull request
-4. Cập nhật tài liệu khi cần thiết
+- **Cấu hình và tài liệu**:
+  - `requirements.txt`: Danh sách thư viện
+  - `.env`: Cấu hình môi trường
+  - `README.md`: Tài liệu hướng dẫn
+  - `Huongdan.txt`: Hướng dẫn chi tiết
 
-## Giấy Phép
+## 🤝 Đóng Góp
 
-Dự án này được phân phối dưới giấy phép MIT. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
+Chúng tôi rất hoan nghênh mọi đóng góp! Vui lòng đọc [CONTRIBUTING.md](CONTRIBUTING.md) để biết thêm chi tiết.
 
-## Liên Hệ
+## 📄 Giấy Phép
 
-- Email: hqhuyzzzz@gmail.com
-- GitHub: [https://github.com/dinhvaren](https://github.com/dinhvaren)
-- Website: [https://dinhvaren.github.io](https://dinhvaren.github.io)
+Dự án được phân phối dưới giấy phép MIT. Xem [LICENSE](LICENSE) để biết thêm chi tiết.
 
-## Cảm Ơn
+## 📞 Liên Hệ
+
+- 📧 Email: hqhuyzzzz@gmail.com
+- 💻 GitHub: [dinhvaren](https://github.com/dinhvaren)
+- 🌐 Website: [dinhvaren.github.io](https://dinhvaren.github.io)
+- 📱 Facebook: [Đình Wage](https://www.facebook.com/dvr.official.2203)
+
+## 🙏 Cảm Ơn
 
 Cảm ơn tất cả những người đã đóng góp và hỗ trợ cho dự án này. Đặc biệt cảm ơn các thư viện mã nguồn mở đã được sử dụng trong dự án.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Đình Wage</sub>
+</div>
