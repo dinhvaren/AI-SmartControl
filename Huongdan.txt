@@ -156,5 +156,3 @@ Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng 
 - GitHub: https://github.com/dinhvaren
 - Website: https://dinhvaren.github.io
 - Facebook: https://www.facebook.com/dvr.official.2203
-
-
