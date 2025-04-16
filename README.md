@@ -130,7 +130,15 @@ python main.py
 
 ## 🤝 Đóng Góp
 
-Chúng tôi rất hoan nghênh mọi đóng góp! Vui lòng đọc [CONTRIBUTING.md](CONTRIBUTING.md) để biết thêm chi tiết.
+Chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng! Nếu bạn muốn đóng góp cho dự án, vui lòng:
+
+1. Fork repository
+2. Tạo branch mới cho tính năng của bạn (`git checkout -b feature/AmazingFeature`)
+3. Commit những thay đổi của bạn (`git commit -m 'Add some AmazingFeature'`)
+4. Push lên branch (`git push origin feature/AmazingFeature`)
+5. Mở một Pull Request
+
+Hoặc bạn có thể gửi ý kiến đóng góp trực tiếp qua email: dinhlnng2003@gmail.com
 
 ## 📄 Giấy Phép
 
@@ -142,6 +150,8 @@ Dự án được phân phối dưới giấy phép MIT. Xem [LICENSE](LICENSE) 
 - 💻 GitHub: [dinhvaren](https://github.com/dinhvaren)
 - 🌐 Website: [dinhvaren.github.io](https://dinhvaren.github.io)
 - 📱 Facebook: [Đình Wage](https://www.facebook.com/dvr.official.2203)
+
+Mọi ý kiến đóng góp, báo lỗi hoặc yêu cầu tính năng mới, vui lòng gửi email về địa chỉ: dinhlnng2003@gmail.com
 
 ## 🙏 Cảm Ơn
 
