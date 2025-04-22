@@ -16,14 +16,23 @@ from tab_window import TabWindow
 from volume import Volume
 from voiceai import VoiceAI
 
+# Màu sắc chủ đạo
+PRIMARY_COLOR = "#2c3e50"
+SECONDARY_COLOR = "#3498db"
+ACCENT_COLOR = "#e74c3c"
+BACKGROUND_COLOR = "#ecf0f1"
+TEXT_COLOR = "#2c3e50"
+SUCCESS_COLOR = "#2ecc71"
+WARNING_COLOR = "#f39c12"
+
 class SettingsWindow(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         
         # Cấu hình cửa sổ
         self.title("Cài Đặt")
-        self.geometry("400x250")
-        self.configure(bg="#f8f9fa")
+        self.geometry("400x300")
+        self.configure(bg=BACKGROUND_COLOR)
         
         # Làm cho cửa sổ không thể resize
         self.resizable(False, False)
@@ -33,12 +42,12 @@ class SettingsWindow(tk.Toplevel):
         
         # Cấu hình style cho nút Lưu
         self.style.configure("Save.TButton",
-                           background="#0d6efd",
+                           background=SECONDARY_COLOR,
                            foreground="white",
                            padding=10,
                            font=("Segoe UI", 10, "bold"))
         self.style.map("Save.TButton",
-                      background=[("active", "#0b5ed7")])
+                      background=[("active", "#2980b9")])
                            
         # Frame chính
         main_frame = ttk.Frame(self, padding="20")
@@ -48,6 +57,7 @@ class SettingsWindow(tk.Toplevel):
         self.startup_var = tk.BooleanVar(value=False)
         self.voice_only_var = tk.BooleanVar(value=False)
         self.gesture_only_var = tk.BooleanVar(value=False)
+        self.disable_ai_var = tk.BooleanVar(value=False)
         
         # Tạo các checkbox
         startup_check = ttk.Checkbutton(main_frame,
@@ -67,6 +77,12 @@ class SettingsWindow(tk.Toplevel):
                                            variable=self.gesture_only_var,
                                            style="Settings.TCheckbutton")
         gesture_only_check.pack(anchor=tk.W, pady=10)
+        
+        disable_ai_check = ttk.Checkbutton(main_frame,
+                                         text="Tắt trợ lý ảo",
+                                         variable=self.disable_ai_var,
+                                         style="Settings.TCheckbutton")
+        disable_ai_check.pack(anchor=tk.W, pady=10)
         
         # Frame cho nút Lưu
         button_frame = ttk.Frame(main_frame)
@@ -111,6 +127,127 @@ class SettingsWindow(tk.Toplevel):
         # TODO: Lưu cài đặt
         self.destroy()
 
+    def show_voice_commands(self):
+        """Hiển thị hướng dẫn các lệnh giọng nói"""
+        commands = """
+ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
+
+1. Điều khiển âm lượng:
+    • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
+    • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
+    • "tăng âm 10" - Tăng âm lượng 10 đơn vị
+    • "giảm âm 10" - Giảm âm lượng 10 đơn vị
+    • "tắt âm" - Tắt âm
+    • "bật âm" - Bật âm
+    • "âm lượng tối đa" - Đặt âm lượng tối đa
+    • "âm lượng tối thiểu" - Đặt âm lượng tối thiểu
+
+2. Điều khiển cuộn trang:
+    • "lướt xuống" - Cuộn trang xuống
+    • "lướt lên" - Cuộn trang lên
+    • "dừng lại" - Dừng cuộn trang
+    • "cuộn nhanh" - Tăng tốc độ cuộn
+    • "cuộn chậm" - Giảm tốc độ cuộn
+    • "cuộn đến đầu" - Cuộn lên đầu trang
+    • "cuộn đến cuối" - Cuộn xuống cuối trang
+
+3. Điều khiển cửa sổ:
+    • "mở trang" - Mở tab mới
+    • "chuyển trang" - Chuyển tab
+    • "cửa sổ" - Mở chế độ chuyển cửa sổ
+    • "qua phải" - Chuyển sang tab/cửa sổ bên phải
+    • "qua trái" - Chuyển sang tab/cửa sổ bên trái
+    • "chọn trang" - Chọn cửa sổ hiện tại
+    • "đóng cửa sổ" - Đóng cửa sổ hiện tại
+    • "thu nhỏ" - Thu nhỏ cửa sổ hiện tại
+    • "phóng to" - Phóng to cửa sổ hiện tại
+
+4. Điều khiển chuột:
+    • "nhấp đôi" hoặc "double click" - Nhấp đôi chuột
+    • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
+    • "chuột phải" hoặc "right click" - Nhấp chuột phải
+    • "chuột trái" hoặc "left click" - Nhấp chuột trái
+    • "chuột qua phải" - Di chuột sang phải
+    • "chuột qua trái" - Di chuột sang trái
+    • "chuột lên" - Di chuột lên trên
+    • "chuột xuống" - Di chuột xuống dưới
+    • "kéo chuột" - Bắt đầu kéo chuột
+    • "thả chuột" - Thả chuột
+    • "di chuột" - Di chuyển chuột theo hướng chỉ định
+    • "giữ chuột" - Giữ chuột
+    • "nhả chuột" - Nhả chuột
+
+5. Nhập văn bản:
+    • "nhập chữ" - Bắt đầu nhập văn bản
+    • "xóa chữ [số]" - Xóa số ký tự
+    • "xóa từ [số]" - Xóa số từ
+    • "bôi đen [số] [phải/trái]" - Bôi đen số từ
+    • "copy" hoặc "sao chép" - Sao chép văn bản
+    • "dán chữ" hoặc "paste" - Dán văn bản
+    • "xuống dòng" - Xuống dòng mới
+    • "tab" - Nhấn phím Tab
+    • "enter" - Nhấn phím Enter
+    • "space" - Nhấn phím Space
+    • "backspace" - Xóa ký tự trước đó
+    • "delete" - Xóa ký tự sau đó
+
+6. Điều khiển Google:
+    • "google mở tab mới" - Mở tab mới
+    • "google đóng tab" - Đóng tab hiện tại
+    • "google mở lại tab" - Mở lại tab đã đóng
+    • "google chuyển tab [số]" - Chuyển đến tab số
+    • "google di chuyển tab phải" - Di chuyển tab sang phải
+    • "google di chuyển tab trái" - Di chuyển tab sang trái
+    • "google ghim tab" - Ghim tab hiện tại
+    • "google bỏ ghim tab" - Bỏ ghim tab
+    • "google ẩn danh" - Mở tab ẩn danh
+    • "google đóng tất cả tab" - Đóng tất cả tab
+    • "google làm mới trang" - Làm mới trang
+    • "google dừng tải" - Dừng tải trang
+    • "google phóng to" - Phóng to trang
+    • "google thu nhỏ" - Thu nhỏ trang
+    • "google đặt lại zoom" - Đặt lại tỷ lệ zoom
+    • "google lịch sử" - Mở lịch sử
+    • "google dấu trang" - Mở dấu trang
+    • "google đánh dấu trang" - Đánh dấu trang hiện tại
+    • "google tìm trong trang [từ khóa]" - Tìm kiếm trong trang
+    • "google dịch trang" - Mở dịch trang
+
+7. Điều khiển YouTube:
+    • "youtube mở youtube" - Mở YouTube
+    • "youtube phát" hoặc "youtube tạm dừng" - Phát/tạm dừng video
+    • "youtube video tiếp theo" - Chuyển sang video tiếp theo
+    • "youtube video trước" - Quay lại video trước
+    • "youtube tăng âm" - Tăng âm lượng
+    • "youtube giảm âm" - Giảm âm lượng
+    • "youtube tắt tiếng" - Tắt tiếng
+    • "youtube toàn màn hình" - Bật/tắt chế độ toàn màn hình
+    • "youtube rạp hát" - Bật/tắt chế độ rạp hát
+    • "youtube tua nhanh" - Tua nhanh 5 giây
+    • "youtube tua lùi" - Tua lùi 5 giây
+    • "youtube tăng tốc độ" - Tăng tốc độ phát
+    • "youtube giảm tốc độ" - Giảm tốc độ phát
+    • "youtube đặt lại tốc độ" - Đặt lại tốc độ phát
+    • "youtube thích video" - Thích video
+    • "youtube không thích video" - Không thích video
+    • "youtube đăng ký" - Đăng ký kênh
+    • "youtube tìm kiếm [từ khóa]" - Tìm kiếm trên YouTube
+
+8. Lệnh hệ thống:
+    • "tắt máy" - Tắt máy tính
+    • "khởi động lại" - Khởi động lại máy tính
+    • "chế độ ngủ" - Đưa máy vào chế độ ngủ
+    • "đăng xuất" - Đăng xuất khỏi tài khoản
+    • "khóa màn hình" - Khóa màn hình
+    • "mở task manager" - Mở Task Manager
+    • "mở control panel" - Mở Control Panel
+    • "mở settings" - Mở Settings Windows
+    • "mở [tên ứng dụng]" - Mở ứng dụng được chỉ định
+    • "điều khiển" - Bắt đầu lắng nghe lệnh
+    • "dừng lại" - Dừng lắng nghe lệnh
+"""
+        messagebox.showinfo("Hướng dẫn lệnh giọng nói", commands)
+
 class ControlApp(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -134,68 +271,68 @@ class ControlApp(tk.Tk):
         # Cấu hình cửa sổ chính
         self.title("AI Control - Điều Khiển Máy Tính Bằng Tay & Giọng Nói")
         self.geometry("1200x800")
-        self.configure(bg="#f8f9fa")
+        self.configure(bg=BACKGROUND_COLOR)
         
         # Tạo style
         self.style = ttk.Style()
         self.style.theme_use('clam')
         
         # Cấu hình style
-        self.style.configure("TFrame", background="#f8f9fa")
+        self.style.configure("TFrame", background=BACKGROUND_COLOR)
         self.style.configure("TLabel", 
-                           background="#f8f9fa", 
-                           foreground="#212529", 
+                           background=BACKGROUND_COLOR, 
+                           foreground=TEXT_COLOR, 
                            font=("Segoe UI", 10))
 
         # Style cho nút chính (Bắt đầu/Dừng)
         self.style.configure("Primary.TButton",
-                           background="#0d6efd",
+                           background=SECONDARY_COLOR,
                            foreground="white",
                            padding=(20, 10),
                            font=("Segoe UI", 10, "bold"),
                            borderwidth=0,
                            relief="flat")
         self.style.map("Primary.TButton",
-                      background=[("active", "#0b5ed7")],
+                      background=[("active", "#2980b9")],
                       relief=[("pressed", "flat")],
                       borderwidth=[("pressed", 0)])
 
         # Style cho nút Dừng
         self.style.configure("Stop.TButton",
-                           background="#dc3545",
+                           background=ACCENT_COLOR,
                            foreground="white",
                            padding=(20, 10),
                            font=("Segoe UI", 10, "bold"),
                            borderwidth=0,
                            relief="flat")
         self.style.map("Stop.TButton",
-                      background=[("active", "#bb2d3b")],
+                      background=[("active", "#c0392b")],
                       relief=[("pressed", "flat")],
                       borderwidth=[("pressed", 0)])
 
         # Style cho nút cài đặt
         self.style.configure("Settings.TButton",
-                           background="#6c757d",
+                           background=PRIMARY_COLOR,
                            foreground="white",
                            padding=(20, 10),
                            font=("Segoe UI", 10, "bold"),
                            borderwidth=0,
                            relief="flat")
         self.style.map("Settings.TButton",
-                      background=[("active", "#5c636a")],
+                      background=[("active", "#34495e")],
                       relief=[("pressed", "flat")],
                       borderwidth=[("pressed", 0)])
 
         # Style cho các frame
         self.style.configure("TLabelframe", 
                            background="white", 
-                           foreground="#212529",
+                           foreground=TEXT_COLOR,
                            font=("Segoe UI", 10, "bold"),
                            borderwidth=1,
                            relief="solid")
         self.style.configure("TLabelframe.Label", 
                            background="white", 
-                           foreground="#212529",
+                           foreground=TEXT_COLOR,
                            font=("Segoe UI", 10, "bold"))
         
         # Tạo các widget
@@ -221,14 +358,14 @@ class ControlApp(tk.Tk):
         
         title_label = ttk.Label(title_frame, 
                               text="AI CONTROL", 
-                              font=("Segoe UI", 28, "bold"),
-                              foreground="#0d6efd")
+                              font=("Segoe UI", 32, "bold"),
+                              foreground=PRIMARY_COLOR)
         title_label.pack()
         
         subtitle_label = ttk.Label(title_frame,
                                  text="Điều Khiển Máy Tính Bằng Tay & Giọng Nói AI",
                                  font=("Segoe UI", 14),
-                                 foreground="#6c757d")
+                                 foreground=SECONDARY_COLOR)
         subtitle_label.pack(pady=(5, 0))
         
         # Frame chứa camera và thông tin
@@ -247,37 +384,37 @@ class ControlApp(tk.Tk):
         self.camera_label.pack(fill=tk.BOTH, expand=True)
         
         # Mode indicator frame
-        mode_frame = tk.Frame(camera_frame, bg="#f8f9fa")
+        mode_frame = tk.Frame(camera_frame, bg=BACKGROUND_COLOR)
         mode_frame.pack(side=tk.BOTTOM, pady=10, anchor=tk.W)
         
         # Voice indicator
-        voice_frame = tk.Frame(mode_frame, bg="#f8f9fa", padx=10, pady=5)
+        voice_frame = tk.Frame(mode_frame, bg=BACKGROUND_COLOR, padx=10, pady=5)
         voice_frame.pack(side=tk.LEFT, padx=5)
         
-        self.voice_dot = tk.Canvas(voice_frame, width=14, height=14, bg="#f8f9fa", 
+        self.voice_dot = tk.Canvas(voice_frame, width=14, height=14, bg=BACKGROUND_COLOR, 
                                  highlightthickness=0)
         self.voice_dot.pack(side=tk.LEFT, padx=(0, 5), pady=(2, 0))
         self.voice_circle = self.voice_dot.create_oval(2, 2, 12, 12, 
-                                                     fill="#f8f9fa",
-                                                     outline="black",
+                                                     fill=BACKGROUND_COLOR,
+                                                     outline=PRIMARY_COLOR,
                                                      width=1)
         
-        voice_label = tk.Label(voice_frame, text="Voice", fg="black", bg="#f8f9fa", font=("Segoe UI", 10))
+        voice_label = tk.Label(voice_frame, text="Voice", fg=TEXT_COLOR, bg=BACKGROUND_COLOR, font=("Segoe UI", 10))
         voice_label.pack(side=tk.LEFT)
         
         # Gesture indicator
-        gesture_frame = tk.Frame(mode_frame, bg="#f8f9fa", padx=10, pady=5)
+        gesture_frame = tk.Frame(mode_frame, bg=BACKGROUND_COLOR, padx=10, pady=5)
         gesture_frame.pack(side=tk.LEFT, padx=5)
         
-        self.gesture_dot = tk.Canvas(gesture_frame, width=14, height=14, bg="#f8f9fa",
+        self.gesture_dot = tk.Canvas(gesture_frame, width=14, height=14, bg=BACKGROUND_COLOR,
                                    highlightthickness=0)
         self.gesture_dot.pack(side=tk.LEFT, padx=(0, 5), pady=(2, 0))
         self.gesture_circle = self.gesture_dot.create_oval(2, 2, 12, 12,
-                                                         fill="#f8f9fa",
-                                                         outline="black",
+                                                         fill=BACKGROUND_COLOR,
+                                                         outline=PRIMARY_COLOR,
                                                          width=1)
         
-        gesture_label = tk.Label(gesture_frame, text="Gesture", fg="black", bg="#f8f9fa", font=("Segoe UI", 10))
+        gesture_label = tk.Label(gesture_frame, text="Gesture", fg=TEXT_COLOR, bg=BACKGROUND_COLOR, font=("Segoe UI", 10))
         gesture_label.pack(side=tk.LEFT)
         
         # Frame thông tin
@@ -347,7 +484,7 @@ class ControlApp(tk.Tk):
         guide_frame.pack(fill=tk.BOTH, expand=True, pady=15)
 
         # Tạo canvas và scrollbar
-        canvas = tk.Canvas(guide_frame, bg="#f8f9fa", highlightthickness=0)
+        canvas = tk.Canvas(guide_frame, bg=BACKGROUND_COLOR, highlightthickness=0)
         scrollbar = ttk.Scrollbar(guide_frame, orient="vertical", command=canvas.yview)
         
         # Frame chứa nội dung hướng dẫn
@@ -410,7 +547,7 @@ class ControlApp(tk.Tk):
                                    text=guide_text,
                                    justify=tk.LEFT,
                                    font=("Segoe UI", 11),
-                                   background="#f8f9fa",
+                                   background=BACKGROUND_COLOR,
                                    wraplength=500)  # Giới hạn độ rộng văn bản
         self.guide_label.pack(anchor=tk.W, padx=10, pady=5, fill=tk.BOTH, expand=True)
 
@@ -452,23 +589,40 @@ class ControlApp(tk.Tk):
         self.stop_button.state(['disabled'])
         
         # Reset indicators
-        self.voice_dot.itemconfig(self.voice_circle, fill="#f8f9fa")
-        self.gesture_dot.itemconfig(self.gesture_circle, fill="#f8f9fa")
+        self.voice_dot.itemconfig(self.voice_circle, fill=BACKGROUND_COLOR)
+        self.gesture_dot.itemconfig(self.gesture_circle, fill=BACKGROUND_COLOR)
         self.mode_label.config(text="Đang chờ...")
         
+        # Dừng luồng voice
+        if self.voice_thread and self.voice_thread.is_alive():
+            self.voice_thread.join(timeout=1.0)  # Chờ thread kết thúc tối đa 1 giây
+            self.voice_thread = None
+            
+        # Xóa tất cả lệnh trong hàng đợi
+        while not self.command_queue.empty():
+            try:
+                self.command_queue.get_nowait()
+            except queue.Empty:
+                break
+            
     def voice_control(self):
         """Hàm xử lý nhận diện giọng nói trong một luồng riêng"""
         while self.running:
             try:
                 command = self.voice_ai.listen()
+                if not self.running:  # Kiểm tra lại trạng thái running
+                    break
+                    
                 if command:
                     self.command_queue.put(command)
                     # Hiển thị đèn voice active
-                    self.voice_dot.itemconfig(self.voice_circle, fill="#28a745")
-                    self.gesture_dot.itemconfig(self.gesture_circle, fill="#f8f9fa")
-                    self.after(1000, lambda: self.voice_dot.itemconfig(self.voice_circle, fill="#f8f9fa"))
+                    self.voice_dot.itemconfig(self.voice_circle, fill=SUCCESS_COLOR)
+                    self.gesture_dot.itemconfig(self.gesture_circle, fill=BACKGROUND_COLOR)
+                    self.after(1000, lambda: self.voice_dot.itemconfig(self.voice_circle, fill=BACKGROUND_COLOR))
             except Exception as e:
                 print(f"Lỗi trong luồng giọng nói: {e}")
+                if not self.running:  # Kiểm tra lại trạng thái running
+                    break
                 
     def process_camera(self):
         """Hàm xử lý frame từ camera và nhận diện cử chỉ"""
@@ -487,8 +641,8 @@ class ControlApp(tk.Tk):
             
             # Xác định chế độ điều khiển
             if fingers:
-                self.gesture_dot.itemconfig(self.gesture_circle, fill="#28a745")
-                self.voice_dot.itemconfig(self.voice_circle, fill="#f8f9fa")
+                self.gesture_dot.itemconfig(self.gesture_circle, fill=SUCCESS_COLOR)
+                self.voice_dot.itemconfig(self.voice_circle, fill=BACKGROUND_COLOR)
                 
                 if fingers == [1, 1, 0, 0, 0]:  # Giơ ngón cái và ngón trỏ
                     if self.current_mode != 'volume':
@@ -522,7 +676,7 @@ class ControlApp(tk.Tk):
                 self.window_control.minimize_window(fingers)
             else:
                 # Không phát hiện cử chỉ
-                self.gesture_dot.itemconfig(self.gesture_circle, fill="#f8f9fa")
+                self.gesture_dot.itemconfig(self.gesture_circle, fill=BACKGROUND_COLOR)
             
             # Xử lý lệnh giọng nói
             try:
@@ -570,55 +724,121 @@ class ControlApp(tk.Tk):
         """Hiển thị hướng dẫn các lệnh giọng nói"""
         commands = """
 ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
-    1. Điều khiển chuột:
-        • "nhấp đôi" hoặc "double click" - Nhấp đúp chuột
-        • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
-        • "chuột phải" hoặc "right click" - Nhấp chuột phải
-        • "chuột trái" hoặc "left click" - Nhấp chuột trái
-        • "chuột qua phải" - Di chuột sang phải
-        • "chuột qua trái" - Di chuột sang trái
-        • "chuột lên" - Di chuột lên trên
-        • "chuột xuống" - Di chuột xuống dưới
-        • "kéo chuột" - Bắt đầu kéo chuột
-        • "thả chuột" - Thả chuột
 
-    2. Nhập văn bản:
-        • "nhập chữ" - Bắt đầu chế độ nhập văn bản
-        • "dừng nhập" - Kết thúc chế độ nhập văn bản
-        • "xóa chữ" - Xóa một ký tự hoặc số lượng ký tự được chỉ định
-        • "xóa từ" - Xóa một từ hoặc số lượng từ được chỉ định
-        • "bôi đen" - Bôi đen một từ hoặc số lượng từ được chỉ định
-        • "copy" hoặc "sao chép" - Sao chép văn bản
-        • "dán chữ" hoặc "paste" - Dán văn bản
-        • "xuống dòng" - Xuống dòng mới
+1. Điều khiển âm lượng:
+    • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
+    • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
+    • "tăng âm 10" - Tăng âm lượng 10 đơn vị
+    • "giảm âm 10" - Giảm âm lượng 10 đơn vị
+    • "tắt âm" - Tắt âm
+    • "bật âm" - Bật âm
+    • "âm lượng tối đa" - Đặt âm lượng tối đa
+    • "âm lượng tối thiểu" - Đặt âm lượng tối thiểu
 
-    3. Điều khiển ứng dụng:
-        • "đóng cửa sổ" - Đóng cửa sổ hiện tại
-        • "cài đặt" hoặc "setting" - Mở cài đặt Windows
-        • "mở [tên ứng dụng]" - Mở ứng dụng được chỉ định
-        • "khởi động lại" - Khởi động lại máy tính
-        • "chế độ ngủ" - Đưa máy vào chế độ ngủ
+2. Điều khiển cuộn trang:
+    • "lướt xuống" - Cuộn trang xuống
+    • "lướt lên" - Cuộn trang lên
+    • "dừng lại" - Dừng cuộn trang
+    • "cuộn nhanh" - Tăng tốc độ cuộn
+    • "cuộn chậm" - Giảm tốc độ cuộn
+    • "cuộn đến đầu" - Cuộn lên đầu trang
+    • "cuộn đến cuối" - Cuộn xuống cuối trang
 
-    4. Điều khiển âm lượng:
-        • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
-        • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
+3. Điều khiển cửa sổ:
+    • "mở trang" - Mở tab mới
+    • "chuyển trang" - Chuyển tab
+    • "cửa sổ" - Mở chế độ chuyển cửa sổ
+    • "qua phải" - Chuyển sang tab/cửa sổ bên phải
+    • "qua trái" - Chuyển sang tab/cửa sổ bên trái
+    • "chọn trang" - Chọn cửa sổ hiện tại
+    • "đóng cửa sổ" - Đóng cửa sổ hiện tại
+    • "thu nhỏ" - Thu nhỏ cửa sổ hiện tại
+    • "phóng to" - Phóng to cửa sổ hiện tại
 
-    5. Điều khiển cuộn trang:
-        • "lướt xuống" - Bắt đầu cuộn trang xuống
-        • "lướt lên" - Bắt đầu cuộn trang lên
-        • "dừng lại" - Dừng cuộn trang
+4. Điều khiển chuột:
+    • "nhấp đôi" hoặc "double click" - Nhấp đôi chuột
+    • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
+    • "chuột phải" hoặc "right click" - Nhấp chuột phải
+    • "chuột trái" hoặc "left click" - Nhấp chuột trái
+    • "chuột qua phải" - Di chuột sang phải
+    • "chuột qua trái" - Di chuột sang trái
+    • "chuột lên" - Di chuột lên trên
+    • "chuột xuống" - Di chuột xuống dưới
+    • "kéo chuột" - Bắt đầu kéo chuột
+    • "thả chuột" - Thả chuột
+    • "di chuột" - Di chuyển chuột theo hướng chỉ định
+    • "giữ chuột" - Giữ chuột
+    • "nhả chuột" - Nhả chuột
 
-    6. Điều khiển tab/cửa sổ:
-        • "mở trang" - Mở tab mới
-        • "chuyển trang" - Chuyển đổi giữa các tab
-        • "cửa sổ" - Mở chế độ chuyển cửa sổ
-        • "qua phải" - Chuyển sang tab/cửa sổ bên phải
-        • "qua trái" - Chuyển sang tab/cửa sổ bên trái
-        • "chọn trang" - Chọn tab/cửa sổ hiện tại
+5. Nhập văn bản:
+    • "nhập chữ" - Bắt đầu nhập văn bản
+    • "xóa chữ [số]" - Xóa số ký tự
+    • "xóa từ [số]" - Xóa số từ
+    • "bôi đen [số] [phải/trái]" - Bôi đen số từ
+    • "copy" hoặc "sao chép" - Sao chép văn bản
+    • "dán chữ" hoặc "paste" - Dán văn bản
+    • "xuống dòng" - Xuống dòng mới
+    • "tab" - Nhấn phím Tab
+    • "enter" - Nhấn phím Enter
+    • "space" - Nhấn phím Space
+    • "backspace" - Xóa ký tự trước đó
+    • "delete" - Xóa ký tự sau đó
 
-    7. Lệnh hệ thống:
-        • "tắt máy" - Tắt máy tính
-        """
+6. Điều khiển Google:
+    • "google mở tab mới" - Mở tab mới
+    • "google đóng tab" - Đóng tab hiện tại
+    • "google mở lại tab" - Mở lại tab đã đóng
+    • "google chuyển tab [số]" - Chuyển đến tab số
+    • "google di chuyển tab phải" - Di chuyển tab sang phải
+    • "google di chuyển tab trái" - Di chuyển tab sang trái
+    • "google ghim tab" - Ghim tab hiện tại
+    • "google bỏ ghim tab" - Bỏ ghim tab
+    • "google ẩn danh" - Mở tab ẩn danh
+    • "google đóng tất cả tab" - Đóng tất cả tab
+    • "google làm mới trang" - Làm mới trang
+    • "google dừng tải" - Dừng tải trang
+    • "google phóng to" - Phóng to trang
+    • "google thu nhỏ" - Thu nhỏ trang
+    • "google đặt lại zoom" - Đặt lại tỷ lệ zoom
+    • "google lịch sử" - Mở lịch sử
+    • "google dấu trang" - Mở dấu trang
+    • "google đánh dấu trang" - Đánh dấu trang hiện tại
+    • "google tìm trong trang [từ khóa]" - Tìm kiếm trong trang
+    • "google dịch trang" - Mở dịch trang
+
+7. Điều khiển YouTube:
+    • "youtube mở youtube" - Mở YouTube
+    • "youtube phát" hoặc "youtube tạm dừng" - Phát/tạm dừng video
+    • "youtube video tiếp theo" - Chuyển sang video tiếp theo
+    • "youtube video trước" - Quay lại video trước
+    • "youtube tăng âm" - Tăng âm lượng
+    • "youtube giảm âm" - Giảm âm lượng
+    • "youtube tắt tiếng" - Tắt tiếng
+    • "youtube toàn màn hình" - Bật/tắt chế độ toàn màn hình
+    • "youtube rạp hát" - Bật/tắt chế độ rạp hát
+    • "youtube tua nhanh" - Tua nhanh 5 giây
+    • "youtube tua lùi" - Tua lùi 5 giây
+    • "youtube tăng tốc độ" - Tăng tốc độ phát
+    • "youtube giảm tốc độ" - Giảm tốc độ phát
+    • "youtube đặt lại tốc độ" - Đặt lại tốc độ phát
+    • "youtube thích video" - Thích video
+    • "youtube không thích video" - Không thích video
+    • "youtube đăng ký" - Đăng ký kênh
+    • "youtube tìm kiếm [từ khóa]" - Tìm kiếm trên YouTube
+
+8. Lệnh hệ thống:
+    • "tắt máy" - Tắt máy tính
+    • "khởi động lại" - Khởi động lại máy tính
+    • "chế độ ngủ" - Đưa máy vào chế độ ngủ
+    • "đăng xuất" - Đăng xuất khỏi tài khoản
+    • "khóa màn hình" - Khóa màn hình
+    • "mở task manager" - Mở Task Manager
+    • "mở control panel" - Mở Control Panel
+    • "mở settings" - Mở Settings Windows
+    • "mở [tên ứng dụng]" - Mở ứng dụng được chỉ định
+    • "điều khiển" - Bắt đầu lắng nghe lệnh
+    • "dừng lại" - Dừng lắng nghe lệnh
+"""
         messagebox.showinfo("Hướng dẫn lệnh giọng nói", commands)
         
     def __del__(self):

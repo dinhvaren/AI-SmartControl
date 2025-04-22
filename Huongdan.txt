@@ -66,35 +66,127 @@ Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng 
 - "phóng to": Phóng to cửa sổ hiện tại
 
 4.1.4. Điều Khiển Chuột
-- "nhấp đôi": Nhấp đôi chuột
-- "nhấp chuột": Nhấp chuột trái
-- "chuột phải": Nhấp chuột phải
-- "chuột lên": Di chuột lên trên 25 pixel
-- "chuột xuống": Di chuột xuống dưới 25 pixel
-- "chuột qua trái": Di chuột sang trái 25 pixel
-- "chuột qua phải": Di chuột sang phải 25 pixel
+- "nhấp đôi" hoặc "double click": Nhấp đôi chuột
+- "nhấp chuột" hoặc "click chuột": Nhấp chuột trái
+- "chuột phải" hoặc "right click": Nhấp chuột phải
+- "chuột trái" hoặc "left click": Nhấp chuột trái
+- "chuột qua phải": Di chuột sang phải
+- "chuột qua trái": Di chuột sang trái
+- "chuột lên": Di chuột lên trên
+- "chuột xuống": Di chuột xuống dưới
 - "kéo chuột": Bắt đầu kéo chuột
-- "thả chuột": Kết thúc kéo chuột
+- "thả chuột": Thả chuột
 
 4.1.5. Nhập Văn Bản
 - "nhập chữ": Bắt đầu nhập văn bản
-- "dừng nhập": Kết thúc nhập văn bản
-- "xóa chữ": Xóa một ký tự
-- "xóa 3 chữ": Xóa 3 ký tự (có thể thay đổi số)
-- "xóa từ": Xóa một từ
+- "xóa chữ [số]": Xóa số ký tự
+- "xóa từ [số]": Xóa số từ
+- "bôi đen [số] [phải/trái]": Bôi đen số từ
+- "copy" hoặc "sao chép": Sao chép văn bản
+- "dán chữ" hoặc "paste": Dán văn bản
 - "xuống dòng": Xuống dòng mới
-- "tab": Thêm khoảng trắng tab
-- "bôi đen [số]": Bôi đen số từ
-- "copy/sao chép": Sao chép văn bản
-- "dán chữ/paste": Dán văn bản
+- "chọn tất cả": Chọn toàn bộ văn bản
+- "cắt": Cắt văn bản đã chọn
+- "xóa dòng": Xóa dòng hiện tại
+- "xóa đoạn": Xóa đoạn văn bản hiện tại
+- "xóa từ đầu dòng": Xóa từ vị trí con trỏ đến đầu dòng
+- "xóa đến cuối dòng": Xóa từ vị trí con trỏ đến cuối dòng
+- "in đậm": Bật/tắt in đậm
+- "in nghiêng": Bật/tắt in nghiêng
+- "gạch chân": Bật/tắt gạch chân
+- "gạch ngang": Bật/tắt gạch ngang
+- "cỡ chữ lớn": Tăng cỡ chữ
+- "cỡ chữ nhỏ": Giảm cỡ chữ
+- "căn trái": Căn lề trái
+- "căn phải": Căn lề phải
+- "căn giữa": Căn lề giữa
+- "căn đều": Căn đều hai bên
+- "lên dòng": Di chuyển con trỏ lên dòng
+- "xuống dòng": Di chuyển con trỏ xuống dòng
+- "đầu dòng": Di chuyển con trỏ về đầu dòng
+- "cuối dòng": Di chuyển con trỏ đến cuối dòng
+- "đầu trang": Di chuyển con trỏ lên đầu trang
+- "cuối trang": Di chuyển con trỏ xuống cuối trang
+- "đầu tài liệu": Di chuyển con trỏ lên đầu tài liệu
+- "cuối tài liệu": Di chuyển con trỏ xuống cuối tài liệu
+- "thụt lề": Thụt lề đoạn văn
+- "bỏ thụt lề": Bỏ thụt lề đoạn văn
+- "tạo danh sách": Tạo danh sách đánh số
+- "tạo gạch đầu dòng": Tạo danh sách gạch đầu dòng
+- "tăng khoảng cách dòng": Tăng khoảng cách giữa các dòng
+- "giảm khoảng cách dòng": Giảm khoảng cách giữa các dòng
+- "tìm [từ khóa]": Tìm kiếm từ khóa trong văn bản
+- "tìm tiếp": Tìm kiếm từ khóa tiếp theo
+- "thay thế [từ cũ] [từ mới]": Thay thế từ cũ bằng từ mới
+- "thay thế tất cả [từ cũ] [từ mới]": Thay thế tất cả từ cũ bằng từ mới
+- "hoàn tác": Hoàn tác thao tác vừa thực hiện
+- "làm lại": Làm lại thao tác vừa hoàn tác
 
 4.1.6. Hệ Thống
 - "tắt máy": Tắt máy tính
 - "khởi động lại": Khởi động lại máy tính
 - "chế độ ngủ": Đưa máy vào chế độ ngủ
-- "chế độ thoát": Thoát ứng dụng // chưa thêm lệnh vì chưa có giao diện cụ thể của ứng dụng
-- "cài đặt/setting": Mở cài đặt Windows
+- "cài đặt" hoặc "setting": Mở cài đặt Windows
 - "mở [tên ứng dụng]": Mở ứng dụng
+- "điều khiển": Bắt đầu lắng nghe lệnh
+- "dừng lại": Dừng lắng nghe lệnh
+
+4.1.7. Điều Khiển Google
+- "google mở tab mới": Mở tab mới
+- "google đóng tab": Đóng tab hiện tại
+- "google mở lại tab": Mở lại tab đã đóng
+- "google chuyển tab [số]": Chuyển đến tab số
+- "google di chuyển tab phải": Di chuyển tab sang phải
+- "google di chuyển tab trái": Di chuyển tab sang trái
+- "google ghim tab": Ghim tab hiện tại
+- "google bỏ ghim tab": Bỏ ghim tab
+- "google ẩn danh": Mở tab ẩn danh
+- "google đóng tất cả tab": Đóng tất cả tab
+- "google làm mới trang": Làm mới trang
+- "google dừng tải": Dừng tải trang
+- "google phóng to": Phóng to trang
+- "google thu nhỏ": Thu nhỏ trang
+- "google đặt lại zoom": Đặt lại tỷ lệ zoom
+- "google lịch sử": Mở lịch sử
+- "google dấu trang": Mở dấu trang
+- "google đánh dấu trang": Đánh dấu trang hiện tại
+- "google tải xuống": Mở trang tải xuống
+- "google cài đặt google": Mở cài đặt Google
+- "google tiện ích": Mở trang tiện ích
+- "google công cụ nhà phát triển": Mở công cụ nhà phát triển
+- "google kiểm tra phần tử": Mở kiểm tra phần tử
+- "google mã nguồn": Mở mã nguồn trang
+- "google xóa dữ liệu": Mở trang xóa dữ liệu
+- "google cửa hàng google": Mở cửa hàng tiện ích
+- "google tìm trong trang [từ khóa]": Tìm kiếm trong trang
+- "google dịch trang": Mở dịch trang
+- "google lưu trang": Mở lưu trang
+- "google in trang": Mở in trang
+- "google cửa sổ mới": Mở cửa sổ mới
+- "google đóng cửa sổ": Đóng cửa sổ
+- "google thu nhỏ cửa sổ": Thu nhỏ cửa sổ
+- "google phóng to cửa sổ": Phóng to cửa sổ
+- "google khôi phục cửa sổ": Khôi phục cửa sổ
+
+4.1.8. Điều Khiển YouTube
+- "youtube mở youtube": Mở YouTube
+- "youtube phát" hoặc "youtube tạm dừng": Phát/tạm dừng video
+- "youtube video tiếp theo": Chuyển sang video tiếp theo
+- "youtube video trước": Quay lại video trước
+- "youtube tăng âm": Tăng âm lượng
+- "youtube giảm âm": Giảm âm lượng
+- "youtube tắt tiếng": Tắt tiếng
+- "youtube toàn màn hình": Bật/tắt chế độ toàn màn hình
+- "youtube rạp hát": Bật/tắt chế độ rạp hát
+- "youtube tua nhanh": Tua nhanh 5 giây
+- "youtube tua lùi": Tua lùi 5 giây
+- "youtube tăng tốc độ": Tăng tốc độ phát
+- "youtube giảm tốc độ": Giảm tốc độ phát
+- "youtube đặt lại tốc độ": Đặt lại tốc độ phát
+- "youtube thích video": Thích video
+- "youtube không thích video": Không thích video
+- "youtube đăng ký": Đăng ký kênh
+- "youtube tìm kiếm [từ khóa]": Tìm kiếm trên YouTube
 
 4.2. Điều Khiển Bằng Cử Chỉ Tay
 -------------------------------
