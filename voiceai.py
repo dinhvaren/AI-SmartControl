@@ -303,17 +303,25 @@ class VoiceAI:
             elif "bôi đen" in command:
                 # Trích xuất số lượng từ cần bôi đen từ lệnh
                 numbers = re.findall(r'\d+', command)
-                if numbers:
-                    count = int(numbers[0])
+                count = int(numbers[0]) if numbers else 1
+                
+                # Xác định hướng bôi đen
+                if "phải" in command:
                     for _ in range(count):
                         pyautogui.hotkey('shift', 'right')
-                        time.sleep(0.1)  # Thêm độ trễ giữa các lần bôi đen
-                    print(f"Đã bôi đen {count} từ.")
-                    self.speak(f"Đã bôi đen {count} từ.")
+                        time.sleep(0.1)
+                elif "trái" in command:
+                    for _ in range(count):
+                        pyautogui.hotkey('shift', 'left')
+                        time.sleep(0.1)
                 else:
-                    pyautogui.hotkey('shift', 'right')
-                    print("Đã bôi đen một từ.")
-                    self.speak("Đã bôi đen một từ.")
+                    # Mặc định bôi đen sang phải
+                    for _ in range(count):
+                        pyautogui.hotkey('shift', 'right')
+                        time.sleep(0.1)
+                
+                print(f"Đã bôi đen {count} từ.")
+                self.speak(f"Đã bôi đen {count} từ.")
                 return True
             elif "copy" in command or "sao chép" in command:
                 pyautogui.hotkey('ctrl', 'c')
@@ -434,17 +442,25 @@ class VoiceAI:
             elif "bôi đen" in command:
                 # Trích xuất số lượng từ cần bôi đen từ lệnh
                 numbers = re.findall(r'\d+', command)
-                if numbers:
-                    count = int(numbers[0])
+                count = int(numbers[0]) if numbers else 1
+                
+                # Xác định hướng bôi đen
+                if "phải" in command:
                     for _ in range(count):
                         pyautogui.hotkey('shift', 'right')
-                        time.sleep(0.1)  # Thêm độ trễ giữa các lần bôi đen
-                    print(f"Đã bôi đen {count} từ.")
-                    self.speak(f"Đã bôi đen {count} từ.")
+                        time.sleep(0.1)
+                elif "trái" in command:
+                    for _ in range(count):
+                        pyautogui.hotkey('shift', 'left')
+                        time.sleep(0.1)
                 else:
-                    pyautogui.hotkey('shift', 'right')
-                    print("Đã bôi đen một từ.")
-                    self.speak("Đã bôi đen một từ.")
+                    # Mặc định bôi đen sang phải
+                    for _ in range(count):
+                        pyautogui.hotkey('shift', 'right')
+                        time.sleep(0.1)
+                
+                print(f"Đã bôi đen {count} từ.")
+                self.speak(f"Đã bôi đen {count} từ.")
                 return True
             elif "copy" in command or "sao chép" in command:
                 pyautogui.hotkey('ctrl', 'c')
