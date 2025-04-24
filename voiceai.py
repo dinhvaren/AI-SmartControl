@@ -583,8 +583,9 @@ class VoiceAI:
                                     command = self.recognizer.recognize_google(audio, language=LANGUAGE_CODE)
                                     print(f"Lệnh thực hiện: {command}")
                                     
-                                    # Nếu lệnh là "dừng lại" thì tắt chế độ lắng nghe
-                                    if "dừng lại" in command.lower():
+                                    # Nếu lệnh là "dừng điều khiển" thì tắt chế độ lắng nghe
+                                    if "dừng điều khiển" in command.lower():
+                                        print("Đã nhận lệnh 'Dừng điều khiển'")
                                         self.is_listening = False
                                         self.speak("Hệ thống đã dừng lắng nghe lệnh. Để tiếp tục, vui lòng nói 'điều khiển'.")
                                         return None
@@ -593,11 +594,9 @@ class VoiceAI:
                                 except sr.UnknownValueError:
                                     if cmd_attempt < max_attempts - 1:
                                         print("Không nghe rõ, vui lòng nói lại...")
-                                        self.speak("Xin lỗi, tôi không nghe rõ. Vui lòng nói lại.")
                                         continue
                                     else:
                                         print("Không thể nhận diện giọng nói sau nhiều lần thử.")
-                                        self.speak("Xin lỗi, tôi không thể nhận diện giọng nói của bạn.")
                                         return None
                                         
                         else:
@@ -1252,6 +1251,7 @@ class VoiceAI:
             time.sleep(0.5)
             return
         elif "lướt xuống" in command:
+            self.auto_scroll.scroll_speed = 10  # Đặt tốc độ lướt mặc định là 10
             self.auto_scroll.start_scroll()
             self.speak("Đang lướt xuống.")
             self.speak("Đã xử lý xong lệnh")
@@ -1260,6 +1260,7 @@ class VoiceAI:
             time.sleep(0.5)
             return
         elif "lướt lên" in command:
+            self.auto_scroll.scroll_speed = 10  # Đặt tốc độ lướt mặc định là 10
             self.auto_scroll.start_scroll_up()
             self.speak("Đang lướt lên.")
             self.speak("Đã xử lý xong lệnh")
@@ -1267,9 +1268,26 @@ class VoiceAI:
             self.speak("Đang lắng nghe lệnh tiếp theo...")
             time.sleep(0.5)
             return
-        elif "dừng lại" in command:
+        elif "lướt chậm" in command:
+            self.auto_scroll.scroll_speed = 10  # Giảm tốc độ cuộn
+            self.speak("Đã giảm tốc độ lướt.")
+            self.speak("Đã xử lý xong lệnh")
+            time.sleep(0.5)
+            self.speak("Đang lắng nghe lệnh tiếp theo...")
+            time.sleep(0.5)
+            return
+        elif "lướt nhanh" in command:
+            self.auto_scroll.scroll_speed = 30  # Tăng tốc độ cuộn
+            self.speak("Đã tăng tốc độ lướt.")
+            self.speak("Đã xử lý xong lệnh")
+            time.sleep(0.5)
+            self.speak("Đang lắng nghe lệnh tiếp theo...")
+            time.sleep(0.5)
+            return
+        elif "dừng điều khiển" in command:
             self.auto_scroll.stop_scroll()
             self.speak("Đã dừng lướt.")
+            # Không tắt chế độ lắng nghe khi dừng cuộn trang
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
