@@ -41,6 +41,7 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh đ
 |-----------|-------|------------|
 | 🎤 Điều khiển bằng giọng nói | Nhận diện và xử lý lệnh thoại tiếng Việt | ✅ Hoạt động |
 | ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera | ✅ Hoạt động |
+| 🤖 Trợ lý ảo ChatGPT | Tích hợp ChatGPT để hỗ trợ người dùng | ✅ Hoạt động |
 | 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống | ✅ Hoạt động |
 | 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ | ✅ Hoạt động |
 | 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu | ✅ Hoạt động |
