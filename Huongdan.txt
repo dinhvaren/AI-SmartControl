@@ -190,25 +190,6 @@ Hệ thống điều khiển bằng tay và giọng nói là một ứng dụng 
 
 4.1.9. Điều Khiển ChatGPT
 - "chatgpt [lệnh tùy ý]": Gửi lệnh tùy ý đến ChatGPT
-- "chatgpt dừng": Dừng cuộc trò chuyện hiện tại
-- "chatgpt xóa": Xóa lịch sử trò chuyện
-- "chatgpt lưu": Lưu cuộc trò chuyện hiện tại
-- "chatgpt tải": Tải cuộc trò chuyện đã lưu
-- "chatgpt xuất": Xuất cuộc trò chuyện ra file
-- "chatgpt nhập": Nhập cuộc trò chuyện từ file
-- "chatgpt đổi ngôn ngữ [ngôn ngữ]": Thay đổi ngôn ngữ trò chuyện
-- "chatgpt đổi giọng [giọng]": Thay đổi giọng đọc
-- "chatgpt đổi tốc độ [tốc độ]": Thay đổi tốc độ đọc
-- "chatgpt đổi âm lượng [âm lượng]": Thay đổi âm lượng đọc
-- "chatgpt đổi chủ đề [chủ đề]": Thay đổi chủ đề trò chuyện
-- "chatgpt đổi phong cách [phong cách]": Thay đổi phong cách trò chuyện
-- "chatgpt đổi độ dài [độ dài]": Thay đổi độ dài câu trả lời
-- "chatgpt đổi độ chi tiết [độ chi tiết]": Thay đổi độ chi tiết câu trả lời
-- "chatgpt đổi độ sáng tạo [độ sáng tạo]": Thay đổi độ sáng tạo câu trả lời
-- "chatgpt đổi độ chính xác [độ chính xác]": Thay đổi độ chính xác câu trả lời
-- "chatgpt đổi độ hài hước [độ hài hước]": Thay đổi độ hài hước câu trả lời
-- "chatgpt đổi độ trang trọng [độ trang trọng]": Thay đổi độ trang trọng câu trả lời
-- "chatgpt đổi độ thân thiện [độ thân thiện]": Thay đổi độ thân thiện câu trả lời
 
 4.2. Điều Khiển Bằng Cử Chỉ Tay
 -------------------------------
