@@ -16,6 +16,8 @@ import pygame  # Phát âm thanh
 import webbrowser
 import subprocess
 from typing import Optional
+import openai
+from dotenv import load_dotenv
 
 import hand
 from hand_gesture import HandGesture
@@ -24,6 +26,16 @@ from scroll import AutoScroll
 from shutdown import Shutdown
 from tab_window import TabWindow
 from volume import Volume
+
+# Load biến môi trường từ file .env
+load_dotenv()
+
+# Cấu hình OpenAI API key từ biến môi trường
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+# Kiểm tra API key
+if not openai.api_key:
+    raise ValueError("Không tìm thấy OPENAI_API_KEY trong file .env")
 
 # Các hằng số cấu hình
 DEFAULT_VOLUME_STEP = 5  # Bước tăng/giảm âm lượng mặc định
@@ -525,26 +537,30 @@ class TextControl:
         time.sleep(0.5)
 
 class VoiceAI:
-    # Lớp xử lý nhận diện và thực thi lệnh giọng nói.
     def __init__(self):
-        # Khởi tạo đối tượng VoiceAI với các thành phần điều khiển cần thiết.
+        # Khởi tạo đối tượng VoiceAI với các thành phần điều khiển cần thiết
         self.recognizer = sr.Recognizer()
         self.volume = Volume()
         self.auto_scroll = AutoScroll(screen_height=pyautogui.size()[1])
         self.shutdown = Shutdown()
         self.tab_window = TabWindow()
         self.chrome = ChromeControl()
-        self.youtube = YouTubeControl()  # Thêm đối tượng YouTubeControl
-        self.mouse_dragging = False  # Biến theo dõi trạng thái kéo chuột
-        self.is_listening = False  # Biến theo dõi trạng thái lắng nghe
+        self.youtube = YouTubeControl()
+        self.mouse_dragging = False
+        self.is_listening = False
         self.text_control = TextControl()
         
+        # Khởi tạo các thành phần cho trợ lý ảo
+        self.conversation_history = []
+        self.max_turns = 30
+        self.is_assistant_mode = False
+        
         # Cấu hình recognizer
-        self.recognizer.energy_threshold = 4000  # Ngưỡng năng lượng âm thanh
-        self.recognizer.dynamic_energy_threshold = True  # Tự động điều chỉnh ngưỡng
-        self.recognizer.pause_threshold = 0.8  # Thời gian chờ giữa các từ
-        self.recognizer.phrase_threshold = 0.3  # Ngưỡng cho cụm từ
-        self.recognizer.non_speaking_duration = 0.5  # Thời gian im lặng tối thiểu
+        self.recognizer.energy_threshold = 4000
+        self.recognizer.dynamic_energy_threshold = True
+        self.recognizer.pause_threshold = 0.8
+        self.recognizer.phrase_threshold = 0.3
+        self.recognizer.non_speaking_duration = 0.5
         
         # Khởi tạo pygame mixer
         pygame.mixer.init()
@@ -552,14 +568,51 @@ class VoiceAI:
         # Tạo thư mục tạm để lưu file âm thanh
         self.temp_dir = tempfile.mkdtemp()
 
+    def add_to_history(self, role, content):
+        """Thêm một lượt vào lịch sử hội thoại"""
+        self.conversation_history.append({"role": role, "content": content})
+        if len(self.conversation_history) > self.max_turns:
+            system_message = next((msg for msg in self.conversation_history if msg["role"] == "system"), None)
+            self.conversation_history = self.conversation_history[-self.max_turns:]
+            if system_message and system_message not in self.conversation_history:
+                self.conversation_history.insert(0, system_message)
+
+    def get_chatgpt_response(self, prompt):
+        """Lấy phản hồi từ ChatGPT"""
+        try:
+            self.add_to_history("user", prompt)
+            
+            messages = [
+                {"role": "system", "content": "Bạn là một trợ lý ảo thông minh và hữu ích, có khả năng hiểu và trả lời bằng tiếng Việt một cách tự nhiên."}
+            ] + self.conversation_history
+            
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=messages,
+                temperature=0.7,
+                max_tokens=2000
+            )
+            
+            assistant_response = response.choices[0].message.content
+            self.add_to_history("assistant", assistant_response)
+            
+            return assistant_response
+        except openai.error.RateLimitError:
+            print("Lỗi: Đã vượt quá giới hạn sử dụng API. Vui lòng kiểm tra tài khoản OpenAI của bạn.")
+            return None
+        except openai.error.AuthenticationError:
+            print("Lỗi: API key không hợp lệ hoặc đã hết hạn. Vui lòng kiểm tra lại API key.")
+            return None
+        except Exception as e:
+            print(f"Lỗi không xác định khi gọi OpenAI API: {str(e)}")
+            return None
+
     def listen(self):
         try:
             with sr.Microphone() as source:
-                print("Đang chờ lệnh 'Điều Khiển'...")
-                # Điều chỉnh nhiễu nền với thời gian dài hơn
+                print("Đang chờ lệnh 'Điều Khiển' hoặc 'Trợ Lý Ảo'...")
                 self.recognizer.adjust_for_ambient_noise(source, duration=1)
                 
-                # Thử nhận diện 3 lần nếu cần
                 max_attempts = 3
                 for attempt in range(max_attempts):
                     try:
@@ -569,12 +622,49 @@ class VoiceAI:
                         command = self.recognizer.recognize_google(audio, language=LANGUAGE_CODE)
                         print(f"Bạn đã nói: {command}")
                         
+                        # Kiểm tra nếu người dùng nói "Trợ Lý Ảo"
+                        if "trợ lý ảo" in command.lower():
+                            print("Đã nhận lệnh 'Trợ Lý Ảo', chuyển sang chế độ trợ lý...")
+                            self.speak("Đã chuyển sang chế độ trợ lý ảo, vui lòng nói câu hỏi của bạn.")
+                            self.is_assistant_mode = True
+                            self.is_listening = True
+                            
+                            # Lắng nghe câu hỏi
+                            for cmd_attempt in range(max_attempts):
+                                try:
+                                    audio = self.recognizer.listen(source, timeout=10)
+                                    question = self.recognizer.recognize_google(audio, language=LANGUAGE_CODE)
+                                    print(f"Câu hỏi: {question}")
+                                    
+                                    # Nếu lệnh là "dừng trợ lý" thì tắt chế độ trợ lý
+                                    if "dừng trợ lý" in question.lower():
+                                        print("Đã nhận lệnh 'Dừng trợ lý'")
+                                        self.is_assistant_mode = False
+                                        self.is_listening = False
+                                        self.speak("Đã tắt chế độ trợ lý ảo. Để tiếp tục, vui lòng nói 'điều khiển' hoặc 'trợ lý ảo'.")
+                                        return None
+                                        
+                                    # Xử lý câu hỏi với ChatGPT
+                                    response = self.get_chatgpt_response(question)
+                                    if response:
+                                        self.speak(response)
+                                    return None
+                                    
+                                except sr.UnknownValueError:
+                                    if cmd_attempt < max_attempts - 1:
+                                        print("Không nghe rõ, vui lòng nói lại...")
+                                        continue
+                                    else:
+                                        print("Không thể nhận diện giọng nói sau nhiều lần thử.")
+                                        return None
+                        
                         # Kiểm tra nếu người dùng nói "Điều Khiển" hoặc đang trong chế độ lắng nghe
-                        if "điều khiển" in command.lower() or self.is_listening:
+                        elif "điều khiển" in command.lower() or self.is_listening:
                             if "điều khiển" in command.lower():
                                 print("Đã nhận lệnh 'Điều Khiển', đang lắng nghe trong 5 giây...")
                                 self.speak("Đã nhận lệnh điều khiển, vui lòng nói lệnh tiếp theo.")
                                 self.is_listening = True
+                                self.is_assistant_mode = False
                                 
                             # Lắng nghe lệnh thực sự
                             for cmd_attempt in range(max_attempts):
@@ -587,7 +677,7 @@ class VoiceAI:
                                     if "dừng điều khiển" in command.lower():
                                         print("Đã nhận lệnh 'Dừng điều khiển'")
                                         self.is_listening = False
-                                        self.speak("Hệ thống đã dừng lắng nghe lệnh. Để tiếp tục, vui lòng nói 'điều khiển'.")
+                                        self.speak("Hệ thống đã dừng lắng nghe lệnh. Để tiếp tục, vui lòng nói 'điều khiển' hoặc 'trợ lý ảo'.")
                                         return None
                                         
                                     return command.lower()
@@ -600,7 +690,7 @@ class VoiceAI:
                                         return None
                                         
                         else:
-                            print("Không nhận được lệnh 'Điều Khiển'")
+                            print("Không nhận được lệnh 'Điều Khiển' hoặc 'Trợ Lý Ảo'")
                             return None
                             
                     except sr.UnknownValueError:
@@ -617,7 +707,7 @@ class VoiceAI:
         except sr.WaitTimeoutError:
             print("Hết thời gian chờ giọng nói.")
             self.is_listening = False
-            self.speak("Đã hết thời gian chờ lệnh. Để tiếp tục, vui lòng nói 'điều khiển'.")
+            self.speak("Đã hết thời gian chờ lệnh. Để tiếp tục, vui lòng nói 'điều khiển' hoặc 'trợ lý ảo'.")
         except Exception as e:
             print(f"Lỗi khi lắng nghe (bên ngoài): {e}")
             self.is_listening = False
@@ -1390,12 +1480,15 @@ class VoiceAI:
             return
 
 def main():
-    # Hàm chính để chạy ứng dụng VoiceAI.
+    # Hàm chính để chạy ứng dụng VoiceAI
     voice_ai = VoiceAI()
     print("Trợ lý ảo đã sẵn sàng.")
+    print("Nói 'Điều Khiển' để sử dụng các lệnh điều khiển.")
+    print("Nói 'Trợ Lý Ảo' để trò chuyện với trợ lý ảo.")
     while True:
         command = voice_ai.listen()
-        voice_ai.process_command(command)
+        if command:
+            voice_ai.process_command(command)
 
 if __name__ == "__main__":
     main()   

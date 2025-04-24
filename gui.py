@@ -133,7 +133,15 @@ class SettingsWindow(tk.Toplevel):
         commands = """
 ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
 
-1. Điều khiển âm lượng:
+1. Chế độ điều khiển:
+    • "điều khiển" - Bắt đầu lắng nghe lệnh điều khiển
+    • "dừng điều khiển" - Dừng lắng nghe lệnh điều khiển
+
+2. Chế độ trợ lý ảo:
+    • "trợ lý ảo" - Bắt đầu trò chuyện với trợ lý ảo
+    • "dừng trợ lý" - Dừng trò chuyện với trợ lý ảo
+
+3. Điều khiển âm lượng:
     • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
     • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
     • "tăng âm 10" - Tăng âm lượng 10 đơn vị
@@ -143,7 +151,7 @@ class SettingsWindow(tk.Toplevel):
     • "âm lượng tối đa" - Đặt âm lượng tối đa
     • "âm lượng tối thiểu" - Đặt âm lượng tối thiểu
 
-2. Điều khiển cuộn trang:
+4. Điều khiển cuộn trang:
     • "lướt xuống" - Cuộn trang xuống
     • "lướt lên" - Cuộn trang lên
     • "dừng lại" - Dừng cuộn trang
@@ -152,7 +160,7 @@ class SettingsWindow(tk.Toplevel):
     • "cuộn đến đầu" - Cuộn lên đầu trang
     • "cuộn đến cuối" - Cuộn xuống cuối trang
 
-3. Điều khiển cửa sổ:
+5. Điều khiển cửa sổ:
     • "mở trang" - Mở tab mới
     • "chuyển trang" - Chuyển tab
     • "cửa sổ" - Mở chế độ chuyển cửa sổ
@@ -163,7 +171,7 @@ class SettingsWindow(tk.Toplevel):
     • "thu nhỏ" - Thu nhỏ cửa sổ hiện tại
     • "phóng to" - Phóng to cửa sổ hiện tại
 
-4. Điều khiển chuột:
+6. Điều khiển chuột:
     • "nhấp đôi" hoặc "double click" - Nhấp đôi chuột
     • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
     • "chuột phải" hoặc "right click" - Nhấp chuột phải
@@ -178,7 +186,7 @@ class SettingsWindow(tk.Toplevel):
     • "giữ chuột" - Giữ chuột
     • "nhả chuột" - Nhả chuột
 
-5. Nhập văn bản:
+7. Nhập văn bản:
     • "nhập chữ" - Bắt đầu nhập văn bản
     • "xóa chữ [số]" - Xóa số ký tự
     • "xóa từ [số]" - Xóa số từ
@@ -192,7 +200,7 @@ class SettingsWindow(tk.Toplevel):
     • "backspace" - Xóa ký tự trước đó
     • "delete" - Xóa ký tự sau đó
 
-6. Điều khiển Google:
+8. Điều khiển Google:
     • "google mở tab mới" - Mở tab mới
     • "google đóng tab" - Đóng tab hiện tại
     • "google mở lại tab" - Mở lại tab đã đóng
@@ -214,7 +222,7 @@ class SettingsWindow(tk.Toplevel):
     • "google tìm trong trang [từ khóa]" - Tìm kiếm trong trang
     • "google dịch trang" - Mở dịch trang
 
-7. Điều khiển YouTube:
+9. Điều khiển YouTube:
     • "youtube mở youtube" - Mở YouTube
     • "youtube phát" hoặc "youtube tạm dừng" - Phát/tạm dừng video
     • "youtube video tiếp theo" - Chuyển sang video tiếp theo
@@ -234,7 +242,7 @@ class SettingsWindow(tk.Toplevel):
     • "youtube đăng ký" - Đăng ký kênh
     • "youtube tìm kiếm [từ khóa]" - Tìm kiếm trên YouTube
 
-8. Lệnh hệ thống:
+10. Lệnh hệ thống:
     • "tắt máy" - Tắt máy tính
     • "khởi động lại" - Khởi động lại máy tính
     • "chế độ ngủ" - Đưa máy vào chế độ ngủ
@@ -742,7 +750,15 @@ class ControlApp(tk.Tk):
         commands = """
 ĐIỀU KHIỂN BẰNG GIỌNG NÓI:
 
-1. Điều khiển âm lượng:
+1. Chế độ điều khiển:
+    • "điều khiển" - Bắt đầu lắng nghe lệnh điều khiển
+    • "dừng điều khiển" - Dừng lắng nghe lệnh điều khiển
+
+2. Chế độ trợ lý ảo:
+    • "trợ lý ảo" - Bắt đầu trò chuyện với trợ lý ảo
+    • "dừng trợ lý" - Dừng trò chuyện với trợ lý ảo
+
+3. Điều khiển âm lượng:
     • "tăng âm lượng" hoặc "tăng âm" - Tăng âm lượng
     • "giảm âm lượng" hoặc "giảm âm" - Giảm âm lượng
     • "tăng âm 10" - Tăng âm lượng 10 đơn vị
@@ -752,7 +768,7 @@ class ControlApp(tk.Tk):
     • "âm lượng tối đa" - Đặt âm lượng tối đa
     • "âm lượng tối thiểu" - Đặt âm lượng tối thiểu
 
-2. Điều khiển cuộn trang:
+4. Điều khiển cuộn trang:
     • "lướt xuống" - Cuộn trang xuống
     • "lướt lên" - Cuộn trang lên
     • "dừng lại" - Dừng cuộn trang
@@ -761,7 +777,7 @@ class ControlApp(tk.Tk):
     • "cuộn đến đầu" - Cuộn lên đầu trang
     • "cuộn đến cuối" - Cuộn xuống cuối trang
 
-3. Điều khiển cửa sổ:
+5. Điều khiển cửa sổ:
     • "mở trang" - Mở tab mới
     • "chuyển trang" - Chuyển tab
     • "cửa sổ" - Mở chế độ chuyển cửa sổ
@@ -772,7 +788,7 @@ class ControlApp(tk.Tk):
     • "thu nhỏ" - Thu nhỏ cửa sổ hiện tại
     • "phóng to" - Phóng to cửa sổ hiện tại
 
-4. Điều khiển chuột:
+6. Điều khiển chuột:
     • "nhấp đôi" hoặc "double click" - Nhấp đôi chuột
     • "nhấp chuột" hoặc "click chuột" - Nhấp chuột trái
     • "chuột phải" hoặc "right click" - Nhấp chuột phải
@@ -787,7 +803,7 @@ class ControlApp(tk.Tk):
     • "giữ chuột" - Giữ chuột
     • "nhả chuột" - Nhả chuột
 
-5. Nhập văn bản:
+7. Nhập văn bản:
     • "nhập chữ" - Bắt đầu nhập văn bản
     • "xóa chữ [số]" - Xóa số ký tự
     • "xóa từ [số]" - Xóa số từ
@@ -801,7 +817,7 @@ class ControlApp(tk.Tk):
     • "backspace" - Xóa ký tự trước đó
     • "delete" - Xóa ký tự sau đó
 
-6. Điều khiển Google:
+8. Điều khiển Google:
     • "google mở tab mới" - Mở tab mới
     • "google đóng tab" - Đóng tab hiện tại
     • "google mở lại tab" - Mở lại tab đã đóng
@@ -823,7 +839,7 @@ class ControlApp(tk.Tk):
     • "google tìm trong trang [từ khóa]" - Tìm kiếm trong trang
     • "google dịch trang" - Mở dịch trang
 
-7. Điều khiển YouTube:
+9. Điều khiển YouTube:
     • "youtube mở youtube" - Mở YouTube
     • "youtube phát" hoặc "youtube tạm dừng" - Phát/tạm dừng video
     • "youtube video tiếp theo" - Chuyển sang video tiếp theo
@@ -843,7 +859,7 @@ class ControlApp(tk.Tk):
     • "youtube đăng ký" - Đăng ký kênh
     • "youtube tìm kiếm [từ khóa]" - Tìm kiếm trên YouTube
 
-8. Lệnh hệ thống:
+10. Lệnh hệ thống:
     • "tắt máy" - Tắt máy tính
     • "khởi động lại" - Khởi động lại máy tính
     • "chế độ ngủ" - Đưa máy vào chế độ ngủ
