@@ -40,7 +40,7 @@ if not openai.api_key:
 # Các hằng số cấu hình
 DEFAULT_VOLUME_STEP = 5  # Bước tăng/giảm âm lượng mặc định
 LANGUAGE_CODE = 'vi-VN'  # Mã ngôn ngữ cho nhận diện giọng nói
-LISTENING_TIMEOUT = 15  # Thời gian lắng nghe tối đa (giây)
+LISTENING_TIMEOUT = 10  # Thời gian lắng nghe tối đa (giây)
 
 class ChromeControl:
     def __init__(self):
@@ -625,14 +625,14 @@ class VoiceAI:
                         # Kiểm tra nếu người dùng nói "Trợ Lý Ảo"
                         if "trợ lý ảo" in command.lower():
                             print("Đã nhận lệnh 'Trợ Lý Ảo', chuyển sang chế độ trợ lý...")
-                            self.speak("Đã chuyển sang chế độ trợ lý ảo, vui lòng nói câu hỏi của bạn.")
+                            self.speak("Đã chuyển sang chế độ trợ lý ảo, vui lòng nói câu hỏi của bạn trong 10 giây.")
                             self.is_assistant_mode = True
                             self.is_listening = True
                             
                             # Lắng nghe câu hỏi
                             for cmd_attempt in range(max_attempts):
                                 try:
-                                    audio = self.recognizer.listen(source, timeout=10)
+                                    audio = self.recognizer.listen(source, timeout=10, phrase_time_limit=10)
                                     question = self.recognizer.recognize_google(audio, language=LANGUAGE_CODE)
                                     print(f"Câu hỏi: {question}")
                                     
@@ -656,7 +656,15 @@ class VoiceAI:
                                         continue
                                     else:
                                         print("Không thể nhận diện giọng nói sau nhiều lần thử.")
+                                        self.is_assistant_mode = False
+                                        self.is_listening = False
                                         return None
+                                except sr.WaitTimeoutError:
+                                    print("Đã hết thời gian lắng nghe câu hỏi.")
+                                    self.speak("Đã hết thời gian lắng nghe. Vui lòng nói lại câu hỏi của bạn.")
+                                    self.is_assistant_mode = False
+                                    self.is_listening = False
+                                    return None
                         
                         # Kiểm tra nếu người dùng nói "Điều Khiển" hoặc đang trong chế độ lắng nghe
                         elif "điều khiển" in command.lower() or self.is_listening:
@@ -687,7 +695,13 @@ class VoiceAI:
                                         continue
                                     else:
                                         print("Không thể nhận diện giọng nói sau nhiều lần thử.")
+                                        self.is_listening = False
                                         return None
+                                except sr.WaitTimeoutError:
+                                    print("Đã hết thời gian lắng nghe lệnh.")
+                                    self.speak("Đã hết thời gian lắng nghe. Vui lòng nói lại lệnh của bạn.")
+                                    self.is_listening = False
+                                    return None
                                         
                         else:
                             print("Không nhận được lệnh 'Điều Khiển' hoặc 'Trợ Lý Ảo'")
@@ -701,6 +715,11 @@ class VoiceAI:
                         else:
                             print("Không thể nhận diện giọng nói sau nhiều lần thử.")
                             return None
+                    except sr.WaitTimeoutError:
+                        print("Đã hết thời gian chờ lệnh.")
+                        self.speak("Đã hết thời gian chờ lệnh. Vui lòng nói lại.")
+                        self.is_listening = False
+                        return None
                             
         except sr.RequestError as e:
             print(f"Không thể kết nối đến dịch vụ nhận diện giọng nói: {e}")
