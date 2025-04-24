@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import threading
 import queue
 import pyautogui
+import os
 
 # Import các module điều khiển
 import hand
@@ -272,6 +273,22 @@ class ControlApp(tk.Tk):
         self.title("AI Control - Điều Khiển Máy Tính Bằng Tay & Giọng Nói")
         self.geometry("1200x800")
         self.configure(bg=BACKGROUND_COLOR)
+        
+        # Set icon cho ứng dụng
+        try:
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icon.png")
+            if os.path.exists(icon_path):
+                icon = Image.open(icon_path)
+                # Resize nếu cần, nhưng đảm bảo chất lượng tốt
+                # icon = icon.resize((32, 32), Image.Resampling.LANCZOS) 
+                self._icon_photo = ImageTk.PhotoImage(icon) # Lưu trữ tham chiếu
+                # Sử dụng cú pháp đúng cho iconphoto
+                self.tk.call('wm', 'iconphoto', self._w, self._icon_photo)
+                print("Đã set icon cho ứng dụng bằng iconphoto")
+            else:
+                print("Không tìm thấy file icon.png")
+        except Exception as e:
+            print(f"Lỗi khi set icon: {e}")
         
         # Tạo style
         self.style = ttk.Style()

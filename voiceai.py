@@ -776,6 +776,8 @@ class VoiceAI:
                             print("=== Đã nhận lệnh dừng nhập ===")
                             self.speak("Đã dừng nhập.")
                             is_typing = False
+                            # Tắt chế độ lắng nghe sau khi dừng nhập
+                            self.is_listening = False
                             break
                             
                         # Xóa khoảng trắng thừa và chuẩn hóa văn bản
@@ -1024,11 +1026,13 @@ class VoiceAI:
             return
 
         # Thông báo đang xử lý lệnh
+        print(f"\n=== Đang xử lý lệnh: {command} ===")
         self.speak("Đang xử lý lệnh...")
         time.sleep(0.5)
 
         # Xử lý các lệnh chuột
         if self._handle_mouse_commands(command):
+            print(f"=== Đã thực hiện xong lệnh: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1037,6 +1041,7 @@ class VoiceAI:
 
         # Xử lý các lệnh văn bản
         if self._handle_text_commands(command):
+            print(f"=== Đã thực hiện xong lệnh: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1045,6 +1050,7 @@ class VoiceAI:
 
         # Xử lý các lệnh ứng dụng
         if self._handle_app_commands(command):
+            print(f"=== Đã thực hiện xong lệnh: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1110,6 +1116,7 @@ class VoiceAI:
                 if search_text:
                     self.youtube.search(search_text)
                     self.speak(f"Đã tìm kiếm '{search_text}' trên YouTube.")
+            print(f"=== Đã thực hiện xong lệnh YouTube: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1230,6 +1237,7 @@ class VoiceAI:
             elif "khôi phục cửa sổ" in command:
                 self.chrome.restore_window()
                 self.speak("Đã khôi phục cửa sổ.")
+            print(f"=== Đã thực hiện xong lệnh Chrome: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1238,6 +1246,7 @@ class VoiceAI:
 
         if "tăng âm lượng" in command or "tăng âm" in command:
             self._handle_volume_command(command, is_increase=True)
+            print(f"=== Đã thực hiện xong lệnh âm lượng: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1245,6 +1254,7 @@ class VoiceAI:
             return
         elif "giảm âm lượng" in command or "giảm âm" in command:
             self._handle_volume_command(command, is_increase=False)
+            print(f"=== Đã thực hiện xong lệnh âm lượng: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1254,6 +1264,7 @@ class VoiceAI:
             self.auto_scroll.scroll_speed = 10  # Đặt tốc độ lướt mặc định là 10
             self.auto_scroll.start_scroll()
             self.speak("Đang lướt xuống.")
+            print(f"=== Đã thực hiện xong lệnh lướt: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1263,6 +1274,7 @@ class VoiceAI:
             self.auto_scroll.scroll_speed = 10  # Đặt tốc độ lướt mặc định là 10
             self.auto_scroll.start_scroll_up()
             self.speak("Đang lướt lên.")
+            print(f"=== Đã thực hiện xong lệnh lướt: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1271,6 +1283,7 @@ class VoiceAI:
         elif "lướt chậm" in command:
             self.auto_scroll.scroll_speed = 10  # Giảm tốc độ cuộn
             self.speak("Đã giảm tốc độ lướt.")
+            print(f"=== Đã thực hiện xong lệnh lướt: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1279,6 +1292,7 @@ class VoiceAI:
         elif "lướt nhanh" in command:
             self.auto_scroll.scroll_speed = 30  # Tăng tốc độ cuộn
             self.speak("Đã tăng tốc độ lướt.")
+            print(f"=== Đã thực hiện xong lệnh lướt: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1287,7 +1301,7 @@ class VoiceAI:
         elif "dừng điều khiển" in command:
             self.auto_scroll.stop_scroll()
             self.speak("Đã dừng lướt.")
-            # Không tắt chế độ lắng nghe khi dừng cuộn trang
+            print(f"=== Đã thực hiện xong lệnh dừng: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1296,6 +1310,7 @@ class VoiceAI:
         elif "tắt máy" in command:
             self.shutdown.shutdown_computer()
             self.speak("Máy tính sẽ tắt.")
+            print(f"=== Đã thực hiện xong lệnh tắt máy: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1304,6 +1319,7 @@ class VoiceAI:
         elif "mở trang" in command:
             self.tab_window.open_tab()
             self.speak("Đang mở trang.")
+            print(f"=== Đã thực hiện xong lệnh mở trang: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1312,6 +1328,7 @@ class VoiceAI:
         elif "chuyển trang" in command:
             self.tab_window.open_tab()  # Sử dụng cùng hàm với mở tab
             self.speak("Đang chuyển trang.")
+            print(f"=== Đã thực hiện xong lệnh chuyển trang: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1320,6 +1337,7 @@ class VoiceAI:
         elif "cửa sổ" in command:
             self.tab_window.open_tab()  # Sử dụng cùng hàm với mở tab
             self.speak("Đang mở chế độ chuyển cửa sổ.")
+            print(f"=== Đã thực hiện xong lệnh cửa sổ: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1331,6 +1349,7 @@ class VoiceAI:
                 self.speak("Chuyển qua phải.")
             else:
                 self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
+            print(f"=== Đã thực hiện xong lệnh chuyển tab: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1342,6 +1361,7 @@ class VoiceAI:
                 self.speak("Chuyển qua trái.")
             else:
                 self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
+            print(f"=== Đã thực hiện xong lệnh chuyển tab: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1353,6 +1373,7 @@ class VoiceAI:
                 self.speak("Đã chọn.")
             else:
                 self.speak("Vui lòng mở chế độ chuyển cửa sổ trước.")
+            print(f"=== Đã thực hiện xong lệnh chọn trang: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
@@ -1361,6 +1382,7 @@ class VoiceAI:
         else:
             print("Lệnh không được nhận diện.")
             self.speak("Xin lỗi, lệnh không được nhận diện.")
+            print(f"=== Lệnh không được nhận diện: {command} ===")
             self.speak("Đã xử lý xong lệnh")
             time.sleep(0.5)
             self.speak("Đang lắng nghe lệnh tiếp theo...")
