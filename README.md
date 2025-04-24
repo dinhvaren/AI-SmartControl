@@ -21,13 +21,13 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh đ
 
 ## 🎯 Mục Đích Dự Án
 
-- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi dành riêng cho người khuyết tật, giúp họ có thể sử dụng máy tính một cách độc lập
-- Hỗ trợ người khuyết tật vận động trong việc sử dụng máy tính mà không cần phụ thuộc vào bàn phím và chuột truyền thống
-- Cải thiện khả năng tiếp cận công nghệ cho người khuyết tật, đặc biệt là những người gặp khó khăn trong việc sử dụng tay
-- Tích hợp công nghệ AI tiên tiến trong việc nhận diện giọng nói và cử chỉ để tạo ra trải nghiệm điều khiển tự nhiên và dễ sử dụng
+- Tạo ra một giải pháp điều khiển máy tính thông minh và tiện lợi dành riêng cho người khuyết tật
+- Hỗ trợ người khuyết tật vận động trong việc sử dụng máy tính
+- Cải thiện khả năng tiếp cận công nghệ cho người khuyết tật
+- Tích hợp công nghệ AI tiên tiến trong việc nhận diện giọng nói và cử chỉ
 - Cung cấp giải pháp điều khiển đa phương thức, phù hợp với nhiều dạng khuyết tật khác nhau
-- Tạo ra một cộng đồng hỗ trợ và chia sẻ kinh nghiệm sử dụng công nghệ cho người khuyết tật
-- Phát triển một hệ thống mã nguồn mở, miễn phí để mọi người đều có thể tiếp cận và sử dụng
+- Tạo ra một cộng đồng hỗ trợ và chia sẻ kinh nghiệm
+- Phát triển một hệ thống mã nguồn mở, miễn phí
 
 ## 📦 Thông Tin Phiên Bản
 
@@ -40,20 +40,20 @@ AI SmartControl là một hệ thống điều khiển máy tính thông minh đ
 | Tính Năng | Mô Tả | Trạng Thái |
 |-----------|-------|------------|
 | 🎤 Điều khiển bằng giọng nói | Nhận diện và xử lý lệnh thoại tiếng Việt | ✅ Hoạt động |
-| ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera với độ chính xác cao | ✅ Hoạt động |
-| 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống bằng giọng nói hoặc cử chỉ | ✅ Hoạt động |
-| 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ (thu nhỏ, phóng to, đóng) | ✅ Hoạt động |
-| 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu bằng cử chỉ tay | ✅ Hoạt động |
-| ⏻ Tắt máy | Chức năng tắt máy tính bằng giọng nói | ✅ Hoạt động |
-| ⌨️ Nhập văn bản bằng giọng nói | Chuyển đổi giọng nói thành văn bản tiếng Việt | ✅ Hoạt động |
-| 🖱️ Điều khiển chuột | Di chuyển và thao tác chuột bằng cử chỉ tay | ✅ Hoạt động |
-| 🎯 Chế độ điều khiển thông minh | Tự động chuyển đổi giữa các chế độ điều khiển | ✅ Hoạt động |
-| 🔍 Phóng to thu nhỏ | Điều khiển zoom bằng cử chỉ tay | ✅ Hoạt động |
-| 📱 Điều khiển đa màn hình | Hỗ trợ điều khiển trên nhiều màn hình | ✅ Hoạt động |
-| 🎨 Giao diện thân thiện | Thiết kế giao diện dễ sử dụng cho người khuyết tật | ✅ Hoạt động |
-| 🔄 Tùy chỉnh lệnh | Cho phép người dùng tùy chỉnh lệnh điều khiển | ✅ Hoạt động |
-| 📊 Báo cáo trạng thái | Hiển thị trạng thái hoạt động của hệ thống | ✅ Hoạt động |
-| 🔒 Bảo mật | Bảo vệ thông tin người dùng và dữ liệu nhạy cảm | ✅ Hoạt động |
+| ✋ Điều khiển bằng cử chỉ tay | Nhận diện cử chỉ tay qua camera | ✅ Hoạt động |
+| 🔊 Điều khiển âm lượng | Điều chỉnh âm lượng hệ thống | ✅ Hoạt động |
+| 🖥️ Điều khiển cửa sổ | Quản lý và điều khiển cửa sổ | ✅ Hoạt động |
+| 📜 Cuộn trang | Điều khiển cuộn trang web/tài liệu | ✅ Hoạt động |
+| ⏻ Tắt máy | Chức năng tắt máy tính | ✅ Hoạt động |
+| ⌨️ Nhập văn bản bằng giọng nói | Chuyển đổi giọng nói thành văn bản | ✅ Hoạt động |
+| 🖱️ Điều khiển chuột | Di chuyển và thao tác chuột | ✅ Hoạt động |
+| 🎯 Chế độ điều khiển thông minh | Tự động chuyển đổi chế độ | ✅ Hoạt động |
+| 🔍 Phóng to thu nhỏ | Điều khiển zoom | ✅ Hoạt động |
+| 📱 Điều khiển đa màn hình | Hỗ trợ nhiều màn hình | ✅ Hoạt động |
+| 🎨 Giao diện thân thiện | Thiết kế dễ sử dụng | ✅ Hoạt động |
+| 🔄 Tùy chỉnh lệnh | Cho phép tùy chỉnh lệnh | ✅ Hoạt động |
+| 📊 Báo cáo trạng thái | Hiển thị trạng thái hệ thống | ✅ Hoạt động |
+| 🔒 Bảo mật | Bảo vệ thông tin người dùng | ✅ Hoạt động |
 
 ## 🛠️ Yêu Cầu Hệ Thống
 
@@ -102,10 +102,11 @@ python main.py
 ├── 📄 shutdown.py            # Controller tắt máy
 ├── 📄 hidden_window.py       # Controller cửa sổ ẩn
 ├── 📄 requirements.txt       # Danh sách thư viện cần thiết
-├── 📄 .env                   # File cấu hình môi trường
 ├── 📄 .gitignore            # File cấu hình Git
 ├── 📄 README.md             # Tài liệu hướng dẫn
-└── 📄 Huongdan.txt          # Hướng dẫn sử dụng chi tiết
+├── 📄 Huongdan.txt          # Hướng dẫn sử dụng chi tiết
+├── 📄 icon.png              # Biểu tượng ứng dụng
+└── 📄 abc                   # File cấu hình bổ sung
 ```
 
 ### Giải Thích Cấu Trúc
@@ -114,10 +115,10 @@ python main.py
   - `main.py`: File chính để chạy chương trình
   - `gui.py`: Xử lý giao diện người dùng
   - `hand.py`: Xử lý cử chỉ tay
+  - `voiceai.py`: Xử lý giọng nói
 
 - **Các controller**:
   - `hand_gesture.py`: Điều khiển cử chỉ tay
-  - `voiceai.py`: Điều khiển giọng nói
   - `volume.py`: Điều khiển âm lượng
   - `tab_window.py`: Điều khiển cửa sổ
   - `scroll.py`: Điều khiển cuộn trang
@@ -126,9 +127,11 @@ python main.py
 
 - **Cấu hình và tài liệu**:
   - `requirements.txt`: Danh sách thư viện
-  - `.env`: Cấu hình môi trường
+  - `.gitignore`: Cấu hình Git
   - `README.md`: Tài liệu hướng dẫn
   - `Huongdan.txt`: Hướng dẫn chi tiết
+  - `icon.png`: Biểu tượng ứng dụng
+  - `abc`: File cấu hình bổ sung
 
 ## 🤝 Đóng Góp
 
@@ -140,20 +143,16 @@ Chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng! Nếu bạ
 4. Push lên branch (`git push origin feature/AmazingFeature`)
 5. Mở một Pull Request
 
-Hoặc bạn có thể gửi ý kiến đóng góp trực tiếp qua email: dinhlnng2003@gmail.com
-
 ## 📄 Giấy Phép
 
 Dự án được phân phối dưới giấy phép MIT. Xem [LICENSE](LICENSE) để biết thêm chi tiết.
 
 ## 📞 Liên Hệ
 
-- 📧 Email: hqhuyzzzz@gmail.com
+- 📧 Email: dinhlnng2003@gmail.com
 - 💻 GitHub: [dinhvaren](https://github.com/dinhvaren)
 - 🌐 Website: [dinhvaren.github.io](https://dinhvaren.github.io)
 - 📱 Facebook: [Đình Wage](https://www.facebook.com/dvr.official.2203)
-
-Mọi ý kiến đóng góp, báo lỗi hoặc yêu cầu tính năng mới, vui lòng gửi email về địa chỉ: dinhlnng2003@gmail.com
 
 ## 🙏 Cảm Ơn
 
